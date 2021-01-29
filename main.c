@@ -53,4 +53,22 @@ void menuSobre(void) {
     printf("|      2. Módulo nutricionista                                                |\n");
     printf("|                                                                             |\n");
     printf("-------------------------------------------------------------------------------\n");
+    printf("\n");
+    printf("###############################################################################\n");
+    printf("\n");
+    printf("-------------------------------------------------------------------------------\n");
+    printf("|                                                                             |\n");
+    printf("|     ===================================================================     |\n");
+    printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
+    printf("|     ==============             MENU PRINCIPAL            ==============     |\n");
+    printf("|     ==============        MÓDULO CLIENTE/PACIENTE        ==============     |\n");
+    printf("|     ===================================================================     |\n");
+    printf("|                                                                             |\n");
+    printf("|      1. Cadastrar novo cliente                                              |\n");
+    printf("|      2. Visualizar os dados de um cliente                                   |\n");
+    printf("|      3. Alterar os dados de um cliente                                      |\n");
+    printf("|      4. Excluir um cliente                                                  |\n");
+    printf("|      0. Voltar ao menu anteruor                                             |\n");
+    printf("|                                                                             |\n");
+    printf("-------------------------------------------------------------------------------\n\n");
 }
