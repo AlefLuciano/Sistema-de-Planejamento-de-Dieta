@@ -68,7 +68,24 @@ void menuSobre(void) {
     printf("|      2. Visualizar os dados de um cliente                                   |\n");
     printf("|      3. Alterar os dados de um cliente                                      |\n");
     printf("|      4. Excluir um cliente                                                  |\n");
-    printf("|      0. Voltar ao menu anteruor                                             |\n");
+    printf("|      0. Voltar ao menu anterior                                             |\n");
     printf("|                                                                             |\n");
-    printf("-------------------------------------------------------------------------------\n\n");
+    printf("-------------------------------------------------------------------------------\n");
+    printf("\n");
+    printf("###############################################################################\n");
+    printf("\n");
+    printf("-------------------------------------------------------------------------------\n");
+    printf("|                                                                             |\n");
+    printf("|     ===================================================================     |\n");
+    printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
+    printf("|     ==============             MENU PRINCIPAL            ==============     |\n");
+    printf("|     ==============        MÓDULO CLIENTE/PACIENTE        ==============     |\n");
+    printf("|     ===================================================================     |\n");
+    printf("|                                                                             |\n");
+    printf("|      1. Cadastrar uma nova dieta                                            |\n");
+    printf("|      2. Ver liststa de dietas                                               |\n");
+    printf("|      3. Excluir uma dieta                                                   |\n");
+    printf("|      0. Voltar ao menu anterior                                             |\n");
+    printf("|                                                                             |\n");
+    printf("-------------------------------------------------------------------------------\n");
 }
