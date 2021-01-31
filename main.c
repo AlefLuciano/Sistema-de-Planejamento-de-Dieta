@@ -65,9 +65,10 @@ void menuSobre(void) {
     printf("|     ===================================================================     |\n");
     printf("|                                                                             |\n");
     printf("|      1. Cadastrar novo cliente                                              |\n");
-    printf("|      2. Visualizar os dados de um cliente                                   |\n");
-    printf("|      3. Alterar os dados de um cliente                                      |\n");
+    printf("|      2. Visualizar os dados                                                 |\n");
+    printf("|      3. Alterar os dados                                                    |\n");
     printf("|      4. Excluir um cliente                                                  |\n");
+    printf("|      5. Vizualizar a evolução                                               |\n");
     printf("|      0. Voltar ao menu anterior                                             |\n");
     printf("|                                                                             |\n");
     printf("-------------------------------------------------------------------------------\n");
@@ -79,11 +80,11 @@ void menuSobre(void) {
     printf("|     ===================================================================     |\n");
     printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
     printf("|     ==============             MENU PRINCIPAL            ==============     |\n");
-    printf("|     ==============        MÓDULO CLIENTE/PACIENTE        ==============     |\n");
+    printf("|     ==============         MÓDULO NUTRICIONISTA          ==============     |\n");
     printf("|     ===================================================================     |\n");
     printf("|                                                                             |\n");
     printf("|      1. Cadastrar uma nova dieta                                            |\n");
-    printf("|      2. Ver liststa de dietas                                               |\n");
+    printf("|      2. Ver listas de dietas                                               |\n");
     printf("|      3. Excluir uma dieta                                                   |\n");
     printf("|      0. Voltar ao menu anterior                                             |\n");
     printf("|                                                                             |\n");
