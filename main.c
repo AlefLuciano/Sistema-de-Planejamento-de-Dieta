@@ -139,11 +139,11 @@ void menuSobre(void) {
 	printf("|     Celular  (apenas números): ");
 	scanf("%[0-9]", celular);
   getchar();
-  printf("|     Altura (em CM): ");
+  printf("|     Altura (Ex. 1,75): ");
   scanf("%[0-9]", altura);
 	getchar();
-  printf("|     Peso (em Kg): ");
-  scanf("%[0-9]", celular);
+  printf("|     Peso (Ex 59.3): ");
+  scanf("%[0-9]", peso);
   getchar();
 	printf("|                                                                             |\n");
 	printf("|                                                                             |\n");
