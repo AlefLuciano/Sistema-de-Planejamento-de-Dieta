@@ -10,6 +10,7 @@
 #include <stdio.h>
 
 void menuSobre(void);
+float converte (float);
 
 int main(void) {
     menuSobre();
@@ -114,9 +115,7 @@ void menuSobre(void) {
 	char email[51];
 	char nasc[11];
 	char celular[12];
-  char altura[4];
-  char peso[4];
-
+  float peso, altura, altura2, imc;
   
   printf("###############################################################################\n\n");
   printf("-------------------------------------------------------------------------------\n");
@@ -139,16 +138,25 @@ void menuSobre(void) {
 	printf("|     Celular  (apenas números): ");
 	scanf("%[0-9]", celular);
   getchar();
-  printf("|     Altura (Ex. 1,75): ");
-  scanf("%[0-9]", altura);
-	getchar();
-  printf("|     Peso (Ex 59.3): ");
-  scanf("%[0-9]", peso);
+  printf("|     Peso(Ex. 60.0): ");
+  scanf("%f", &peso);
+  printf("|     Altura(Ex. 1.75): ");
+  scanf("%f", &altura);
+  altura2 = converte(altura);
+  imc = peso / altura2;
+  printf("|     Seu IMC é %.1f", imc);
+  getchar();
   getchar();
 	printf("|                                                                             |\n");
 	printf("|                                                                             |\n");
 	printf("-------------------------------------------------------------------------------\n");
+  
 	printf("\n");
 	printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
 	getchar();
+}
+float converte (float altura) {
+  float alt;
+  alt = altura * altura; 
+  return alt;
 }
