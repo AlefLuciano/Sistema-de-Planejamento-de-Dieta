@@ -21,6 +21,7 @@ void telaPesquisarCliente(void);
 void telaAtualizarCliente(void);
 void telaExcluirCliente(void);
 void cadastrarCliente(void);
+float calcularIMC(float, float);
 void pesquisarCliente(void);
 void atualizarCliente(void);
 void excluirCliente(void);
@@ -195,7 +196,7 @@ void telaCadastrarCliente(void) {
 	char email[51];
 	char nasc[11];
 	char celular[12];
-  float peso, altura;
+  float peso, altura, imc;
 
   system("clear");
   printf("-------------------------------------------------------------------------------\n");
@@ -223,12 +224,22 @@ void telaCadastrarCliente(void) {
   scanf("%f", &peso);
   printf("|     Altura(Ex. 1.75): ");
   scanf("%f", &altura);
+  imc = calcularIMC(peso, altura);
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
 
 printf("\n");
 	delay(1);
+}
+
+float calcularIMC(float p, float a) {
+  float a2, imc;
+  a2 = a * a;
+  imc = p / a2;
+  printf("Seu IMC é %.1f", imc);
+  return imc;
+
 }
 
 void telaPesquisarCliente(void) {
