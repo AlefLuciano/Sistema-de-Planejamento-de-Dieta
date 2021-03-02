@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "funcoes.h"
 
 void menuSobre(void);
 char menuPrincipal(void);
@@ -203,8 +204,9 @@ void telaCadastrarCliente(void) {
   char matr[12];
 	char nome[51];
 	char email[51];
-	char nasc[11];
 	char celular[12];
+  int dia, mes, ano;
+  int dataValida;
   float peso, altura, imc;
 
   system("clear");
@@ -223,8 +225,18 @@ void telaCadastrarCliente(void) {
 	printf("|     E-mail: ");
 	scanf("%[a-z@.]", email);
 	getchar();
-	printf("|     Data de Nascimento (dd/mm/aaaa):  ");
-	scanf("%[0-9/]", nasc);
+  printf("Informe sua data de nascimento\n");
+  printf("Dia: ");
+  scanf("%d", &dia);
+  printf("Mês: ");
+  scanf("%d", &mes);
+  printf("Ano: ");
+  scanf("%d", &ano);
+  dataValida = validaDataDeNascimento(dia, mes, ano);
+  if (!dataValida) {
+    printf("A data %02d/%02d/%d não é válida\n", dia, mes, ano);
+    printf("Tente novamente!!!\n\n");
+  }
 	getchar();
 	printf("|     Celular  (apenas números): ");
 	scanf("%[0-9]", celular);
@@ -442,6 +454,7 @@ void telaPesquisarNutricionista(void) {
 	scanf("%[0-9]", cpf);
 	getchar();                                                                        
   printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
@@ -654,4 +667,4 @@ void telaExcluirDieta(void) {
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
-} 
+}
