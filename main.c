@@ -37,7 +37,16 @@ void pesquisarNutricionista(void);
 void atualizarNutricionista(void);
 void excluirNutricionista(void);
 
-//void moduloDieta(void);
+void moduloDieta(void);
+char menuDieta(void);
+void telaCadastrarDieta(void);
+void telaPesquisarDieta(void);
+void telaAtualizarDieta(void);
+void telaExcluirDieta(void);
+void cadastrarDieta(void);
+void pesquisarDieta(void);
+void atualizarDieta(void);
+void excluirDieta(void);
 
 void telaSobre(void) {
     system("clear");
@@ -433,7 +442,6 @@ void telaPesquisarNutricionista(void) {
 	scanf("%[0-9]", cpf);
 	getchar();                                                                        
   printf("|                                                                             |\n");
-  printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
@@ -482,32 +490,168 @@ void telaExcluirNutricionista(void) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-///								Módulo Turma
+///								Módulo Dieta
 ///////////////////////////////////////////////////////////////////////////////
-//char menuDieta(void) {
-//	char op;
+void moduloDieta(void) {
+	char opcao;
+	do {
+		opcao = menuDieta();
+		switch(opcao) {
+			case '1': 	cadastrarDieta();
+						break;
+			case '2': 	pesquisarDieta();
+						break;
+			case '3': 	atualizarDieta();
+						break;
+			case '4': 	excluirDieta();
+						break;
+		} 		
+	} while (opcao != '0');
+}
 
-//    system("clear");
-//  printf("-------------------------------------------------------------------------------\n");
-//  printf("|                                                                             |\n");
-//  printf("|     ===================================================================     |\n");
-//  printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
-//  printf("|     ==============             MENU PRINCIPAL            ==============     |\n");
-//  printf("|     ==============            MÓDULO DE DIETAS           ==============     |\n");
-//  printf("|     ===================================================================     |\n");
-//  printf("|                                                                             |\n");
-//  printf("|      1. Ver dietas para ganho de massa muscular                             |\n");
-//  printf("|      2. Ver dietas para emagrecer                                           |\n");
-//  printf("|      3. Ver dietas para manter o peso                                       |\n");
-//  printf("|      4. Ver dieta personalizada                                             |\n");
-//  printf("|      0. Voltar ao menu anterior                                             |\n");
-//  printf("|                                                                             |\n");
-//  printf("|      Escolha a opção desejada: ");
-//	scanf("%c", &op);
-//	getchar();                                                                       
-//  printf("|                                                                             |\n");
-//  printf("-------------------------------------------------------------------------------\n");
-//  printf("\n");
-//    delay(1);
-//	return op;
-//}
+void cadastrarDieta(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	telaCadastrarDieta();
+}
+
+void pesquisarDieta(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	telaPesquisarDieta();
+}
+
+
+void atualizarDieta(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	telaAtualizarDieta();
+}
+
+
+void excluirDieta(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	telaExcluirDieta();
+}
+
+
+char menuDieta(void) {
+	char op;
+
+    system("clear");
+  printf("\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
+  printf("|     ==============             MENU PRINCIPAL            ==============     |\n");
+  printf("|     ==============            MÓDULO DE DIETAS           ==============     |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|      1. Cadastrar nova dieta                                                |\n");
+  printf("|      2. Pesquisar dieta                                                     |\n");
+  printf("|      3. Atualizar dieta                                                     |\n");
+  printf("|      4. Excluir dieta                                                       |\n");
+  printf("|      0. Voltar ao menu anterior                                             |\n");
+  printf("|                                                                             |\n");
+  printf("|      Escolha a opção desejada: ");
+	scanf("%c", &op);
+	getchar();                                                                       
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
+    delay(1);
+	return op;
+
+
+}
+
+void telaCadastrarDieta(void) {
+	char codDieta[4];
+  char focoDaDieta[20];
+
+  system("clear");
+	printf("\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============            CADASTRAR DIETA           ==============     |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|     Escreva um codigo para a dieta: ");
+	scanf("%[0-9]", codDieta);
+	getchar();
+  printf("|     Escreva o foco da dieta: ");
+	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", focoDaDieta);
+	getchar();
+  printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
+	delay(1);
+}
+
+void telaPesquisarDieta(void) {
+  char focoDaDieta[20];
+
+  system("clear");
+	printf("\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============            PESQUISAR DIETA            ==============     |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|     Escreva o foco da dieta: ");
+	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", focoDaDieta);
+	getchar();
+printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
+	delay(1);
+}
+
+void telaAtualizarDieta(void) {
+	char codDieta[4];
+
+  system("clear");
+	printf("\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============            ATUALIZAR DIETA            ==============     |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|     Escreva o codigo da dieta: ");
+	scanf("%[0-9]", codDieta);
+	getchar();
+  printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
+	delay(1);
+}
+
+
+void telaExcluirDieta(void) {
+	char codDieta[4];
+
+  system("clear");
+	printf("\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============             EXCLUIR DIETA             ==============     |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|     Escreva o codigo da dieta: ");
+	scanf("%[0-9]", codDieta);
+	getchar();
+  printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
+	delay(1);
+} 
