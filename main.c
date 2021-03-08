@@ -22,7 +22,6 @@ void telaPesquisarCliente(void);
 void telaAtualizarCliente(void);
 void telaExcluirCliente(void);
 void cadastrarCliente(void);
-float calcularIMC(float, float);
 void pesquisarCliente(void);
 void atualizarCliente(void);
 void excluirCliente(void);
@@ -216,6 +215,7 @@ void telaCadastrarCliente(void) {
   printf("|     ==============           CADASTRAR CLIENTE           ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
+  getchar();
   printf("|     Matrícula (apenas números): ");
 	scanf("%[0-9]", matr);
 	getchar();
@@ -224,8 +224,18 @@ void telaCadastrarCliente(void) {
 	getchar();
 	printf("|     E-mail: ");
 	scanf("%[a-z@.]", email);
-	getchar();
+	getchar(); 
+  printf("|     Celular  (apenas números): ");
+	scanf("%[0-9]", celular);
+  getchar();
+  printf("|     Peso(Ex. 60.0): ");
+  scanf("%f", &peso);
+  printf("|     Altura(Ex. 1.75): ");
+  scanf("%f", &altura);
+  imc = calcularIMC(peso, altura);
+  printf("Seu IMC é %.1f\n", imc);
   printf("Informe sua data de nascimento\n");
+  while (!dataValida) {
   printf("Dia: ");
   scanf("%d", &dia);
   printf("Mês: ");
@@ -237,31 +247,14 @@ void telaCadastrarCliente(void) {
     printf("A data %02d/%02d/%d não é válida\n", dia, mes, ano);
     printf("Tente novamente!!!\n\n");
   }
+  printf("A data de nascimento %02d/%02d/%d é válida\n", dia, mes, ano);
 	getchar();
-	printf("|     Celular  (apenas números): ");
-	scanf("%[0-9]", celular);
-  getchar();
-  printf("|     Peso(Ex. 60.0): ");
-  scanf("%f", &peso);
-  printf("|     Altura(Ex. 1.75): ");
-  scanf("%f", &altura);
-  imc = calcularIMC(peso, altura);
-  printf("|                                                                             |\n");
-  printf("|                                                                             |\n");
-  printf("-------------------------------------------------------------------------------\n");
+  }
 
 printf("\n");
 	delay(1);
 }
 
-float calcularIMC(float p, float a) {
-  float a2, imc;
-  a2 = a * a;
-  imc = p / a2;
-  printf("Seu IMC é %.1f", imc);
-  return imc;
-
-}
 
 void telaPesquisarCliente(void) {
 	char matr[12];
