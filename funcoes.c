@@ -1,6 +1,7 @@
+//// Essa função é um adaptação do "valida datas" apresentada em aula 
 int bissexto(int);
 
-int validaDataDeNascimento(int dd, int mm, int aa) {
+int validadeDataDeNascimento(int dd, int mm, int aa) {
   int maiorDia;
   if (aa < 0 || aa > 2021 || mm < 1 || mm > 12)
     return 0;

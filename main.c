@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include "funcoes.h"
+#include "calcularIMC.h"
+#include "validaAltura.h"
 
 void menuSobre(void);
 char menuPrincipal(void);
@@ -206,6 +208,7 @@ void telaCadastrarCliente(void) {
 	char celular[12];
   int dia, mes, ano;
   int dataValida;
+  int alturaValida = 0;
   float peso, altura, imc;
 
   system("clear");
@@ -230,8 +233,17 @@ void telaCadastrarCliente(void) {
   getchar();
   printf("|     Peso(Ex. 60.0): ");
   scanf("%f", &peso);
+  while (!alturaValida) {
   printf("|     Altura(Ex. 1.75): ");
   scanf("%f", &altura);
+  alturaValida = validaAltura(altura);
+  if (!alturaValida) {
+    printf("%.2f não é uma altura valida\n",altura);
+    printf("Tente de novo!!\n");
+  }
+  printf("Altura valida\n");
+  getchar();
+  }
   imc = calcularIMC(peso, altura);
   printf("Seu IMC é %.1f\n", imc);
   printf("Informe sua data de nascimento\n");
@@ -242,7 +254,7 @@ void telaCadastrarCliente(void) {
   scanf("%d", &mes);
   printf("Ano: ");
   scanf("%d", &ano);
-  dataValida = validaDataDeNascimento(dia, mes, ano);
+  dataValida = validadeDataDeNascimento(dia, mes, ano);
   if (!dataValida) {
     printf("A data %02d/%02d/%d não é válida\n", dia, mes, ano);
     printf("Tente novamente!!!\n\n");
@@ -427,7 +439,7 @@ void telaCadastrarNutricionista(void) {
   scanf("%d", &mes);
   printf("Ano: ");
   scanf("%d", &ano);
-  dataValida = validaDataDeNascimento(dia, mes, ano);
+  dataValida = validadeDataDeNascimento(dia, mes, ano);
   if (!dataValida) {
     printf("A data %02d/%02d/%d não é válida\n", dia, mes, ano);
     printf("Tente novamente!!!\n\n");

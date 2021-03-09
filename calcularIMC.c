@@ -1,7 +1,7 @@
-float calcularIMC(float p, float a) {
+float calcularIMC(float peso, float altura) {
   float a2, imc;
-  a2 = a * a;
-  imc = p / a2;
+  a2 = altura * altura;
+  imc = peso / a2;
   return imc;
 
 }
