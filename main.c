@@ -13,6 +13,7 @@
 #include "funcoes.h"
 #include "calcularIMC.h"
 #include "validaAltura.h"
+#include "validaPeso.h"
 
 void menuSobre(void);
 char menuPrincipal(void);
@@ -209,6 +210,7 @@ void telaCadastrarCliente(void) {
   int dia, mes, ano;
   int dataValida;
   int alturaValida = 0;
+  int pesoValido = 0;
   float peso, altura, imc;
 
   system("clear");
@@ -231,8 +233,17 @@ void telaCadastrarCliente(void) {
   printf("|     Celular  (apenas números): ");
 	scanf("%[0-9]", celular);
   getchar();
-  printf("|     Peso(Ex. 60.0): ");
+  while (!pesoValido) {
+    printf("|     Peso(Ex. 60.0): ");
   scanf("%f", &peso);
+  pesoValido = validaPeso(peso);
+  if (!pesoValido){
+    printf("%.2f não é um peso valido\n",peso);
+    printf("Tente novamente!!\n");
+  }
+  printf("Peso valido");
+  getchar();
+  }
   while (!alturaValida) {
   printf("|     Altura(Ex. 1.75): ");
   scanf("%f", &altura);
