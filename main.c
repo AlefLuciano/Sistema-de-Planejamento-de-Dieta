@@ -98,8 +98,8 @@ int main(void) {
 						break;
 			case '2': 	moduloNutricionista();
 						break;
-//			case '3': 	moduloDieta();
-//						break;
+			case '3': 	moduloDieta();
+						break;
 		} 		
 	} while (opcao != '0');
 	return 0;    
@@ -444,6 +444,7 @@ void telaCadastrarNutricionista(void) {
 	scanf("%[a-z@.]", email);
 	getchar();
 	printf("Informe sua data de nascimento\n");
+  while (!dataValida) {
   printf("Dia: ");
   scanf("%d", &dia);
   printf("Mês: ");
@@ -454,6 +455,9 @@ void telaCadastrarNutricionista(void) {
   if (!dataValida) {
     printf("A data %02d/%02d/%d não é válida\n", dia, mes, ano);
     printf("Tente novamente!!!\n\n");
+  }
+  printf("A data de nascimento %02d/%02d/%d é válida\n", dia, mes, ano);
+	getchar();
   }
 	getchar();
 	printf("|           Celular  (apenas números): ");
