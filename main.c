@@ -409,8 +409,7 @@ char menuNutricionista(void) {
   printf("|      0. Voltar ao menu anterior                                             |\n");
   printf("|                                                                             |\n");
   printf("|      Escolha a opção desejada: ");
-	scanf("%c", &op);
-	getchar();                                                                            
+	scanf("%c", &op);                                                                          
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
@@ -434,6 +433,7 @@ void telaCadastrarNutricionista(void) {
   printf("|     ==============        CADASTRAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
+  getchar();
   printf("|     CPF (apenas números): ");
 	scanf("%[0-9]", cpf);
 	getchar();
