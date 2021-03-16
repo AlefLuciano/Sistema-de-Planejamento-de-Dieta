@@ -51,6 +51,9 @@ void pesquisarDieta(void);
 void atualizarDieta(void);
 void excluirDieta(void);
 
+void moduloRelatorio(void);
+
+
 void telaSobre(void) {
     system("clear");
   printf("\n");
@@ -100,6 +103,8 @@ int main(void) {
 						break;
 			case '3': 	moduloDieta();
 						break;
+      case '4': 	moduloRelatorio();
+						break;
 		} 		
 	} while (opcao != '0');
 	return 0;    
@@ -119,6 +124,7 @@ char menuPrincipal(void) {
   printf("|      1. Módulo cliente/paciente                                             |\n");
   printf("|      2. Módulo nutricionista                                                |\n");
   printf("|      3. Módulo de dietas                                                    |\n");
+  printf("|      4. Módulo relatorio                                                    |\n");
   printf("|                                                                             |\n");
   printf("|      Escolha uma opção:                                                     |\n");
   scanf("%c", &op);
@@ -698,4 +704,22 @@ void telaExcluirDieta(void) {
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+}
+
+
+void moduloRelatorio(void) {
+	system("clear");
+  printf("\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
+  printf("|     ==============            MÓDULO RELATORIO           ==============     |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|     Ver toda a sua evolução                                                 |\n");
+  printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+
 }
