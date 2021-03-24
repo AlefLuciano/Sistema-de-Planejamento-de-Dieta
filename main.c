@@ -52,6 +52,9 @@ void atualizarDieta(void);
 void excluirDieta(void);
 
 void moduloRelatorio(void);
+char menuRelatorio(void);
+void verEvolucao (void);
+void telaVerEvolucao (void);
 
 
 void telaSobre(void) {
@@ -706,10 +709,29 @@ void telaExcluirDieta(void) {
 	delay(1);
 }
 
+///// MENU RELATORIO\\\\
 
 void moduloRelatorio(void) {
-	system("clear");
-  printf("\n");
+	char opcao;
+	do {
+		  opcao = menuRelatorio();
+		  switch(opcao) {
+			  case '1': 	verEvolucao();
+						break;
+      }
+    } while (opcao != '0');
+}
+
+void verEvolucao(void) {
+	// função ainda em desenvolvimento
+	// exibe a tela apenas para testes
+	telaVerEvolucao();
+}
+
+char menuRelatorio(void) {
+	char op;
+  system("clear");
+   printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
@@ -717,9 +739,30 @@ void moduloRelatorio(void) {
   printf("|     ==============            MÓDULO RELATORIO           ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     Ver toda a sua evolução                                                 |\n");
+  printf("|     1. Ver evolução do cliente                                              |\n");
   printf("|                                                                             |\n");
-  printf("|                                                                             |\n");
+  printf("|     Escolha uma opção:                                                     |\n");
+  scanf("%c", &op);
   printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
+  delay(1);
+	  return op;
+}
+
+void telaVerEvolucao (void){
+
+float peso1 = 88.5, peso2 = 77.0;
+
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
+  printf("|     ==============             VER EVOLUÇÃO              ==============     |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|     Seu peso era: %2.f Kg\n", peso1);
+  printf("|     Seu peso atual é: %.2f Kg\n", peso2);
+  printf("|     Você teve uma perda de peso de: %2.f Kg\n", (peso1 - peso2));
+
 
 }
