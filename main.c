@@ -751,6 +751,7 @@ char menuRelatorio(void) {
 
 void telaVerEvolucao (void){
 
+char matr[12];
 float peso1 = 88.5, peso2 = 77.0;
 
   printf("-------------------------------------------------------------------------------\n");
@@ -760,9 +761,15 @@ float peso1 = 88.5, peso2 = 77.0;
   printf("|     ==============             VER EVOLUÇÃO              ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
+  printf("|     Matrícula (apenas números): ");
+  scanf("%[0-9]", matr);
+  getchar();
   printf("|     Seu peso era: %2.f Kg\n", peso1);
   printf("|     Seu peso atual é: %.2f Kg\n", peso2);
   printf("|     Você teve uma perda de peso de: %2.f Kg\n", (peso1 - peso2));
 
 
 }
+
+
+
