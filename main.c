@@ -731,7 +731,7 @@ void verEvolucao(void) {
 char menuRelatorio(void) {
 	char op;
   system("clear");
-   printf("\n");
+  printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
@@ -741,16 +741,16 @@ char menuRelatorio(void) {
   printf("|                                                                             |\n");
   printf("|     1. Ver evolução do cliente                                              |\n");
   printf("|                                                                             |\n");
-  printf("|     Escolha uma opção:                                                     |\n");
+  printf("|      Escolha uma opção:                                                     |\n");
   scanf("%c", &op);
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
-  delay(1);
-	  return op;
+	delay(1);
+	return op;
 }
 
-void telaVerEvolucao (void){
 
+void telaVerEvolucao (void) {
 char matr[12];
 float peso1 = 88.5, peso2 = 77.0;
 
