@@ -749,7 +749,6 @@ char menuRelatorio(void) {
 	return op;
 }
 
-
 void telaVerEvolucao (void) {
 char matr[12];
 float peso1 = 88.5, peso2 = 77.0;
@@ -766,10 +765,18 @@ float peso1 = 88.5, peso2 = 77.0;
   getchar();
   printf("|     Seu peso era: %2.f Kg\n", peso1);
   printf("|     Seu peso atual é: %.2f Kg\n", peso2);
-  printf("|     Você teve uma perda de peso de: %2.f Kg\n", (peso1 - peso2));
-
+  if (peso1 > peso2) {
+    printf("|     Você teve uma perda de peso de: %2.f Kg\n", (peso1 - peso2));
+  }
+  else if (peso2 > peso1) {
+    printf("|     Você teve um ganho de peso de: %2.f Kg\n", (peso2 - peso1));
+  }
+  else {
+    printf("|     Você manteve o mesmo peso");
+  }
 
 }
+
 
 
 
