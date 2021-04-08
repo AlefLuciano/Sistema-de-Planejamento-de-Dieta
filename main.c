@@ -11,9 +11,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include "funcoes.h"
-#include "calcularIMC.h"
-#include "validaAltura.h"
-#include "validaPeso.h"
+#include "util.h"
+
 
 void menuSobre(void);
 char menuPrincipal(void);

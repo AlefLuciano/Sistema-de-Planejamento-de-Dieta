@@ -1,1 +1,0 @@
-float calcularIMC(float, float);
