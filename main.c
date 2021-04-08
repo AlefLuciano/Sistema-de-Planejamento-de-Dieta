@@ -55,6 +55,7 @@ void moduloRelatorio(void);
 char menuRelatorio(void);
 void verEvolucao (void);
 void telaVerEvolucao (void);
+float melhorPeso(float*);
 
 
 void telaSobre(void) {
@@ -751,8 +752,7 @@ char menuRelatorio(void) {
 
 void telaVerEvolucao (void) {
 char matr[12];
-float peso1 = 88.5, peso2 = 77.0;
-
+float vetPeso[] = {88.0, 82.5, 79.5, 81.8}; 
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
@@ -763,18 +763,18 @@ float peso1 = 88.5, peso2 = 77.0;
   printf("|     Matrícula (apenas números): ");
   scanf("%[0-9]", matr);
   getchar();
-  printf("|     Seu peso era: %.2f Kg\n", peso1);
-  printf("|     Seu peso atual é: %.2f Kg\n", peso2);
-  if (peso1 > peso2) {
-    printf("|     Você teve uma perda de peso de: %.2f Kg\n", (peso1 - peso2));
-  }
-  else if (peso2 > peso1) {
-    printf("|     Você teve um ganho de peso de: %.2f Kg\n", (peso2 - peso1));
-  }
-  else {
-    printf("|     Você manteve o mesmo peso");
-  }
+  melhorPeso(vetPeso);
+}
 
+
+float melhorPeso(float* vetPeso) {
+float menorPeso = 200 ;
+for (int i = 0; i < 4; i++) {
+  if (vetPeso[i] < menorPeso) {
+    menorPeso = vetPeso[i];
+  }
+}
+printf("|      O seu menor peso foi %.2fKg\n", menorPeso);
 }
 
 
