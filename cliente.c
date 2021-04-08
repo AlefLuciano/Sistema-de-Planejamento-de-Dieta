@@ -102,7 +102,7 @@ void telaCadastrarCliente(void) {
 	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
 	getchar();
 	printf("|     E-mail: ");
-	scanf("%[a-z@.]", email);
+	scanf("%[a-záéíóúâêôçàãõ A-ZÁÉÍÓÚÂÊÔÇÀÃÕ 0-9 @.]", email);
 	getchar(); 
   printf("|     Celular  (apenas números): ");
 	scanf("%[0-9]", celular);
@@ -115,7 +115,7 @@ void telaCadastrarCliente(void) {
     printf("%.2f não é um peso valido\n",peso);
     printf("Tente novamente!!\n");
   }
-  printf("Peso valido");
+  printf("Peso valido\n");
   getchar();
   }
   while (!alturaValida) {

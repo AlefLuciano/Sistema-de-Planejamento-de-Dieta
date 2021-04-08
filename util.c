@@ -24,7 +24,7 @@ int bissexto(int);
 
 int validadeDataDeNascimento(int dd, int mm, int aa) {
   int maiorDia;
-  if (aa < 0 || aa > 2021 || mm < 1 || mm > 12)
+  if (aa < 1900 || aa > 2021 || mm < 1 || mm > 12)
     return 0;
   if (mm == 2) {
     if (bissexto(aa)) 
@@ -52,3 +52,4 @@ int bissexto(int aa) {
     return 0;
   }
 }
+
