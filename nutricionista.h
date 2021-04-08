@@ -1,0 +1,10 @@
+void moduloNutricionista(void);
+char menuNutricionista(void);
+void telaCadastrarNutricionista(void);
+void telaPesquisarNutricionista(void);
+void telaAtualizarNutricionista(void);
+void telaExcluirNutricionista(void);
+void cadastrarNutricionista(void);
+void pesquisarNutricionista(void);
+void atualizarNutricionista(void);
+void excluirNutricionista(void);

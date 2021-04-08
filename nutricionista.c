@@ -1,137 +1,112 @@
+//////////
+//// MODO NUTRICIONISTA 
+//////////
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "cliente.h"
+#include "nutricionista.h"
 #include "util.h"
 
-
-void moduloCliente(void) {
+void moduloNutricionista(void) {
 	char opcao;
 	do {
-		opcao = menuCliente();
+		opcao = menuNutricionista();
 		switch(opcao) {
-			case '1': 	cadastrarCliente();
+			case '1': 	cadastrarNutricionista();
 						break;
-			case '2': 	pesquisarCliente();
+			case '2': 	pesquisarNutricionista();
 						break;
-			case '3': 	atualizarCliente();
+			case '3': 	atualizarNutricionista();
 						break;
-			case '4': 	excluirCliente();
+			case '4': 	excluirNutricionista();
 						break;
 		} 		
 	} while (opcao != '0');
 }
 
-void cadastrarCliente(void) {
+void cadastrarNutricionista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	telaCadastrarCliente();
+	telaCadastrarNutricionista();
 }
 
 
-void pesquisarCliente(void) {
+void pesquisarNutricionista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	telaPesquisarCliente();
+	telaPesquisarNutricionista();
 }
 
 
-void atualizarCliente(void) {
+void atualizarNutricionista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	telaAtualizarCliente();
+	telaAtualizarNutricionista();
 }
 
 
-void excluirCliente(void) {
+void excluirNutricionista(void) {
 	// função ainda em desenvolvimento
 	// exibe a tela apenas para testes
-	telaExcluirCliente();
+	telaExcluirNutricionista();
 }
 
-char menuCliente(void) {
+char menuNutricionista(void) {
 	char op;
-  system("clear");
-   printf("\n");
+    system("clear");
+	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
   printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
   printf("|     ==============             MENU PRINCIPAL            ==============     |\n");
-  printf("|     ==============        MÓDULO CLIENTE/PACIENTE        ==============     |\n");
+  printf("|     ==============         MÓDULO NUTRICIONISTA          ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|      1. Cadastrar novo cliente                                              |\n");
-  printf("|      2. Pesquisar um cliente                                                |\n");
-  printf("|      3. Altualizar os dados de um cliente                                   |\n");
-  printf("|      4. Excluir um cliente                                                  |\n");
+  printf("|      1. Cadastrar novo nutricionista                                        |\n");
+  printf("|      2. Pesquisar nutriciosnista                                            |\n");
+  printf("|      3. Atualizar nutriciosnista                                            |\n");
+  printf("|      4. Excluir nutriciosnista                                              |\n");
   printf("|      0. Voltar ao menu anterior                                             |\n");
   printf("|                                                                             |\n");
-  printf("|      Escolha uma opção:                                                     |\n");
-  scanf("%c", &op);
+  printf("|      Escolha a opção desejada: ");
+	scanf("%c", &op);                                                                          
+  printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
-  delay(1);
+	delay(1);
 	return op;
 }
 
-void telaCadastrarCliente(void) {
-  char matr[12];
+void telaCadastrarNutricionista(void) {
+	char cpf[12];
 	char nome[51];
 	char email[51];
-	char celular[12];
-  int dia, mes, ano;
+	int dia, mes, ano;
   int dataValida;
-  int alturaValida = 0;
-  int pesoValido = 0;
-  float peso, altura, imc;
+	char celular[12];
 
-  system("clear");
+    system("clear");
+	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
-  printf("|     ==============           CADASTRAR CLIENTE           ==============     |\n");
+  printf("|     ==============        CADASTRAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   getchar();
-  printf("|     Matrícula (apenas números): ");
-	scanf("%[0-9]", matr);
+  printf("|     CPF (apenas números): ");
+	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|     Nome completo: ");
+	printf("|           Nome completo: ");
 	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
 	getchar();
-	printf("|     E-mail: ");
+	printf("|           E-mail: ");
 	scanf("%[a-z@.]", email);
-	getchar(); 
-  printf("|     Celular  (apenas números): ");
-	scanf("%[0-9]", celular);
-  getchar();
-  while (!pesoValido) {
-    printf("|     Peso(Ex. 60.0): ");
-  scanf("%f", &peso);
-  pesoValido = validaPeso(peso);
-  if (!pesoValido){
-    printf("%.2f não é um peso valido\n",peso);
-    printf("Tente novamente!!\n");
-  }
-  printf("Peso valido");
-  getchar();
-  }
-  while (!alturaValida) {
-  printf("|     Altura(Ex. 1.75): ");
-  scanf("%f", &altura);
-  alturaValida = validaAltura(altura);
-  if (!alturaValida) {
-    printf("%.2f não é uma altura valida\n",altura);
-    printf("Tente de novo!!\n");
-  }
-  printf("Altura valida\n");
-  getchar();
-  }
-  imc = calcularIMC(peso, altura);
-  printf("Seu IMC é %.1f\n", imc);
-  printf("Informe sua data de nascimento\n");
+	getchar();
+	printf("Informe sua data de nascimento\n");
   while (!dataValida) {
   printf("Dia: ");
   scanf("%d", &dia);
@@ -147,26 +122,31 @@ void telaCadastrarCliente(void) {
   printf("A data de nascimento %02d/%02d/%d é válida\n", dia, mes, ano);
 	getchar();
   }
-
-printf("\n");
+	getchar();
+	printf("|           Celular  (apenas números): ");
+	scanf("%[0-9]", celular);
+	getchar();
+  printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
 	delay(1);
 }
 
-
-void telaPesquisarCliente(void) {
-	char matr[12];
+void telaPesquisarNutricionista(void) {
+	char cpf[12];
 
     system("clear");
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
-  printf("|     ==============           PESQUISAR CLIENTE           ==============     |\n");
+  printf("|     ==============        PESQUISAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-	printf("|      Informe a matrícula do cliente (apenas números): ");
-	scanf("%[0-9]", matr);
-	getchar();
+  printf("|     Informe o CPF do Nutricionista (apenas números): ");
+	scanf("%[0-9]", cpf);
+	getchar();                                                                        
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
@@ -174,20 +154,20 @@ void telaPesquisarCliente(void) {
 	delay(1);
 }
 
-void telaAtualizarCliente(void) {
-	char matr[12];
+void telaAtualizarNutricionista(void) {
+	char cpf[12];
 
     system("clear");
-  printf("\n");
+	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
-  printf("|     ==============           ATUALIZAR CLIENTE           ==============     |\n");
+  printf("|     ==============        ATUALIZAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-	printf("|      Informe a matrícula do cliente (apenas números): ");
-	scanf("%[0-9]", matr);
-	getchar();
+  printf("|     Informe o CPF do Nutricionista (apenas números): ");
+	scanf("%[0-9]", cpf);
+	getchar();                                                                        
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
@@ -195,20 +175,20 @@ void telaAtualizarCliente(void) {
 	delay(1);
 }
 
-void telaExcluirCliente(void) {
-	char matr[12];
+void telaExcluirNutricionista(void) {
+	char cpf[12];
 
     system("clear");
-  printf("\n");
+	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
-  printf("|     ==============            EXCLUIR CLIENTE            ==============     |\n");
+  printf("|     ==============         EXCLUIR NUTRICIONISTA         ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-	printf("|      Informe a matrícula do cliente (apenas números): ");
-	scanf("%[0-9]", matr);
-	getchar();
+  printf("|     Informe o CPF do nutricionista (apenas números): ");
+	scanf("%[0-9]", cpf);
+	getchar();                                                                        
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
