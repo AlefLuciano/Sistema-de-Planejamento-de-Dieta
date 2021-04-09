@@ -122,7 +122,6 @@ void telaCadastrarNutricionista(void) {
   printf("A data de nascimento %02d/%02d/%d é válida\n", dia, mes, ano);
 	getchar();
   }
-	getchar();
 	printf("|           Celular  (apenas números): ");
 	scanf("%[0-9]", celular);
 	getchar();

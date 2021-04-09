@@ -174,3 +174,4 @@ void telaExcluirDieta(void) {
   printf("\n");
 	delay(1);
 }
+
