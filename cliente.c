@@ -95,9 +95,11 @@ void telaCadastrarCliente(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   getchar();
-  printf("|     Matrícula (apenas números): ");
-	scanf("%[0-9]", matr);
-	getchar();
+  do {
+	    printf("|           Matrícula (apenas números): ");
+        scanf("%[^\n]", matr);
+	    getchar();
+    } while (!validarMatr(matr));
 	printf("|     Nome completo: ");
 	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
 	getchar();
@@ -115,8 +117,10 @@ void telaCadastrarCliente(void) {
     printf("%.2f não é um peso valido\n",peso);
     printf("Tente novamente!!\n");
   }
-  printf("Peso valido\n");
+  else {
+    printf("Peso valido\n");
   getchar();
+  }
   }
   while (!alturaValida) {
   printf("|     Altura(Ex. 1.75): ");
@@ -126,8 +130,10 @@ void telaCadastrarCliente(void) {
     printf("%.2f não é uma altura valida\n",altura);
     printf("Tente de novo!!\n");
   }
+  else {
   printf("Altura valida\n");
   getchar();
+  }
   }
   imc = calcularIMC(peso, altura);
   printf("Seu IMC é %.1f\n", imc);

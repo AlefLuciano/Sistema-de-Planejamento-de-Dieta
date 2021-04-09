@@ -53,3 +53,36 @@ int bissexto(int aa) {
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// Retorna 1 se o caractere recebido for um dígito (entre 0 e 9)
+/// retorna 0 caso contrário
+///
+/// Função retirada do projeto linguasolta
+
+int ehDigito(char c) {
+  if (c >= '0' && c <= '9') {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// Retorna 1 se string recebido corresponder a um número de matrícula válido 
+/// (apenas dígitos) ou retorna 0 caso contrário
+///
+
+
+int validarMatr(char* matr) {
+  int tam;
+  tam = strlen(matr);
+  if (tam < 10 || tam > 11) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!ehDigito(matr[i])) {
+      return 0;
+    }
+  }
+  return 1;
+}
