@@ -1,3 +1,7 @@
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
+
 int validaAltura (float altura) {
   if (altura < 0.00 || altura > 3.00) {
     return 0; }
@@ -53,6 +57,41 @@ int bissexto(int aa) {
   }
 }
 
+
+///////////
+//// retorna 1 se o caractere recebido for um dígito entre "A-Z", "0-9" "@" ou "." 
+int ehValido (char c) {
+  if (c >= 'A' && c <= 'z') {
+    return 1;
+  } else if (c >= 'a' && c <= 'z') {
+    return 1;
+  } else if (c >= '0' && c <= '9') {
+    return 1;
+  } else if ( c == '.' || c == '@') {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+
+/////////////////////
+/// retorna 1 se o email não contem nenhum carecter diferente de "A-Z", "0-9", "@" ou "." 
+//
+
+int validaEmail (char* email) {
+  // int tam;
+  // tam = strlen(email);
+  for (int i=0; email[i]!='\0'; i++) {
+    if (ehValido(email[i]) == 0 ) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se o caractere recebido for um dígito (entre 0 e 9)
 /// retorna 0 caso contrário
@@ -68,11 +107,23 @@ int ehDigito(char c) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/// Retorna 1 se o caractere recebido for uma alfabético 
+/// (letra entre 'A' e 'Z' ou 'a' e 'z') ou retorna 0 caso contrário
+///apresentado no projeto linguasolta 
+int ehLetra(char c) {
+  if (c >= 'A' && c <= 'Z') {
+    return 1;
+  } else if (c >= 'a' && c <= 'z') {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se string recebido corresponder a um número de matrícula válido 
 /// (apenas dígitos) ou retorna 0 caso contrário
 ///
-
-
 int validarMatr(char* matr) {
   int tam;
   tam = strlen(matr);
@@ -85,4 +136,37 @@ int validarMatr(char* matr) {
     }
   }
   return 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// Retorna 1 se string recebido for exclusivamente alfabético ou
+/// retorna 0 caso contrário
+///
+int validarNome(char* nome) {
+  for (int i=0; nome[i]!='\0'; i++) {
+    if (!ehLetra(nome[i])) {
+      return 0;
+    }
+  }
+	return 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// Faz uma pausa por n segundos, com n sendo passado como parâmetro
+///
+// void delay(int segundos) {
+//   int tempo = 1000 * segundos;
+//   clock_t inicio = clock();
+//   while (clock() < inicio + tempo) {
+//     // não faz nada, apenas gasta tempo
+//   }
+// }
+
+///////////////////////////////////////////////////////////////////////////////
+/// Limpa a tela; funciona em Linux / MacOS / Windows
+///
+void limpaTela(void) {
+  if (system("clear") || system("cls")) {
+
+  }
 }

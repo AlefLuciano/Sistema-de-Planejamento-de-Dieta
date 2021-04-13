@@ -6,7 +6,7 @@
 #include "util.h"
 
 
-///// MENU RELATORIO\\\\
+///// MENU RELATORIO //////
 
 void moduloRelatorio(void) {
 	char opcao;
@@ -14,6 +14,7 @@ void moduloRelatorio(void) {
 		  opcao = menuRelatorio();
 		  switch(opcao) {
 			  case '1': 	verEvolucao();
+          
 						break;
       }
     } while (opcao != '0');
@@ -40,6 +41,7 @@ char menuRelatorio(void) {
   printf("|                                                                             |\n");
   printf("|      Escolha uma opção:                                                     |\n");
   scanf("%c", &op);
+  getchar();
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
@@ -62,6 +64,8 @@ float vetPeso[] = {88.0, 82.5, 79.5, 81.8};
   getchar();
   menorPeso = melhorPeso(vetPeso);
   printf("|      O seu menor peso foi %.2fKg\n", menorPeso);
+  printf("Tecle ENTER para continuar!\n");
+  getchar();
 }
 
 

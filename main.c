@@ -95,6 +95,7 @@ char menuPrincipal(void) {
   printf("|                                                                             |\n");
   printf("|      Escolha uma opção:                                                     |\n");
   scanf("%c", &op);
+  getchar();
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);

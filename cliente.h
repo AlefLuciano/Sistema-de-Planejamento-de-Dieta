@@ -1,7 +1,7 @@
 void moduloCliente(void);
 char menuCliente(void);
-void telaCadastrarCliente(void);
-void telaPesquisarCliente(void);
+Cliente* telaCadastrarCliente(void);
+Cliente* telaPesquisarCliente(void);
 void telaAtualizarCliente(void);
 void telaExcluirCliente(void);
 void cadastrarCliente(void);

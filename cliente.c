@@ -5,6 +5,19 @@
 #include "cliente.h"
 #include "util.h"
 
+typedef struct cliente Cliente;
+
+struct cliente {
+  char matr[12];
+	char nome[51];
+	char email[51];
+	char celular[12];
+  int dia, mes, ano;
+  float peso, altura;
+};
+
+
+// Cliente* cli;
 
 void moduloCliente(void) {
 	char opcao;
@@ -24,16 +37,20 @@ void moduloCliente(void) {
 }
 
 void cadastrarCliente(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaCadastrarCliente();
+  Cliente *cli;
+
+	cli = telaCadastrarCliente();
+
+  free(cli);
 }
 
 
 void pesquisarCliente(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaPesquisarCliente();
+	Cliente *cli;
+
+	cli = telaPesquisarCliente();
+
+  free(cli);
 }
 
 
@@ -76,16 +93,16 @@ char menuCliente(void) {
 	return op;
 }
 
-void telaCadastrarCliente(void) {
-  char matr[12];
-	char nome[51];
-	char email[51];
-	char celular[12];
-  int dia, mes, ano;
-  int dataValida;
+Cliente* telaCadastrarCliente(void) {
+
+  Cliente *cli;
+
+  cli = (Cliente*) malloc(sizeof(Cliente));
+
   int alturaValida = 0;
   int pesoValido = 0;
-  float peso, altura, imc;
+  float imc;
+  int dataValida;
 
   system("clear");
   printf("-------------------------------------------------------------------------------\n");
@@ -95,26 +112,32 @@ void telaCadastrarCliente(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   getchar();
+  cli = (Cliente*) malloc(sizeof(Cliente));
   do {
 	    printf("|           Matrícula (apenas números): ");
-        scanf("%[^\n]", matr);
+      scanf("%[^\n]", cli->matr);
 	    getchar();
-    } while (!validarMatr(matr));
-	printf("|     Nome completo: ");
-	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
+    } while (!validarMatr(cli->matr));
+  do {
+	  printf("|     Nome completo: ");
+	  scanf("%[^\n]", cli->nome);
 	getchar();
-	printf("|     E-mail: ");
-	scanf("%[a-záéíóúâêôçàãõ A-ZÁÉÍÓÚÂÊÔÇÀÃÕ 0-9 @.]", email);
-	getchar(); 
+  } while (!validarNome(cli->nome));
+	do {
+  printf("|     Digite o seu email: ");
+  scanf("%[^\n]", cli->email);
+  getchar();
+  } while (!validaEmail(cli->email));
+  printf("Email valido ");
   printf("|     Celular  (apenas números): ");
-	scanf("%[0-9]", celular);
+	scanf("%[0-9]", cli->celular);
   getchar();
   while (!pesoValido) {
     printf("|     Peso(Ex. 60.0): ");
-  scanf("%f", &peso);
-  pesoValido = validaPeso(peso);
+  scanf("%f", &cli->peso);
+  pesoValido = validaPeso(cli->peso);
   if (!pesoValido){
-    printf("%.2f não é um peso valido\n",peso);
+    printf("%.2f não é um peso valido\n",cli->peso);
     printf("Tente novamente!!\n");
   }
   else {
@@ -124,10 +147,10 @@ void telaCadastrarCliente(void) {
   }
   while (!alturaValida) {
   printf("|     Altura(Ex. 1.75): ");
-  scanf("%f", &altura);
-  alturaValida = validaAltura(altura);
+  scanf("%f", &cli->altura);
+  alturaValida = validaAltura(cli->altura);
   if (!alturaValida) {
-    printf("%.2f não é uma altura valida\n",altura);
+    printf("%.2f não é uma altura valida\n",cli->altura);
     printf("Tente de novo!!\n");
   }
   else {
@@ -135,34 +158,38 @@ void telaCadastrarCliente(void) {
   getchar();
   }
   }
-  imc = calcularIMC(peso, altura);
+  imc = calcularIMC(cli->peso, cli->altura);
   printf("Seu IMC é %.1f\n", imc);
   printf("Informe sua data de nascimento\n");
   while (!dataValida) {
   printf("Dia: ");
-  scanf("%d", &dia);
+  scanf("%d", &cli->dia);
   printf("Mês: ");
-  scanf("%d", &mes);
+  scanf("%d", &cli->mes);
   printf("Ano: ");
-  scanf("%d", &ano);
-  dataValida = validadeDataDeNascimento(dia, mes, ano);
+  scanf("%d", &cli->ano);
+  dataValida = validadeDataDeNascimento(cli->dia, cli->mes, cli->ano);
   if (!dataValida) {
-    printf("A data %02d/%02d/%d não é válida\n", dia, mes, ano);
+    printf("A data %02d/%02d/%d não é válida\n", cli->dia, cli->mes, cli->ano);
     printf("Tente novamente!!!\n\n");
   }
-  printf("A data de nascimento %02d/%02d/%d é válida\n", dia, mes, ano);
+  printf("A data de nascimento %02d/%02d/%d é válida\n", cli->dia, cli->mes, cli->ano);
 	getchar();
   }
 
 printf("\n");
 	delay(1);
+return cli;
 }
 
 
-void telaPesquisarCliente(void) {
-	char matr[12];
 
-    system("clear");
+Cliente* telaPesquisarCliente(void) {
+	Cliente* cli;
+
+  cli = (Cliente*) malloc(sizeof(Cliente));
+
+  system("clear");
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -171,13 +198,14 @@ void telaPesquisarCliente(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
 	printf("|      Informe a matrícula do cliente (apenas números): ");
-	scanf("%[0-9]", matr);
+	scanf("%[0-9]",cli->matr);
 	getchar();
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return cli;
 }
 
 void telaAtualizarCliente(void) {
@@ -221,3 +249,4 @@ void telaExcluirCliente(void) {
   printf("\n");
 	delay(1);
 }
+
