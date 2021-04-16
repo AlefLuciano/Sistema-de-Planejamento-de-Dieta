@@ -92,6 +92,7 @@ char menuPrincipal(void) {
   printf("|      2. Módulo nutricionista                                                |\n");
   printf("|      3. Módulo de dietas                                                    |\n");
   printf("|      4. Módulo relatorio                                                    |\n");
+  printf("|      0. Encerrar o programa                                                 |\n");
   printf("|                                                                             |\n");
   printf("|      Escolha uma opção:                                                     |\n");
   scanf("%c", &op);

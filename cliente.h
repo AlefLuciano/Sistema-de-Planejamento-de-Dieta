@@ -20,3 +20,4 @@ void atualizarCliente(void);
 void excluirCliente(void);
 Cliente* telaCadastrarCliente(void);
 Cliente* telaPesquisarCliente(void);
+void gravarCliente (Cliente*);

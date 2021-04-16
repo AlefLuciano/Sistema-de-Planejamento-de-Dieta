@@ -30,6 +30,8 @@ void cadastrarCliente(void) {
 
 	cli = telaCadastrarCliente();
 
+  gravarCliente(cli);
+
   free(cli);
 }
 
@@ -240,3 +242,14 @@ void telaExcluirCliente(void) {
 	delay(1);
 }
 
+void gravarCliente(Cliente* cli) {
+  FILE* fp;
+  fp = fopen("clientes.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  fwrite(cli, sizeof(Cliente), 1, fp);
+  fclose(fp);
+}
