@@ -9,6 +9,8 @@
 #include "nutricionista.h"
 #include "util.h"
 
+
+
 void moduloNutricionista(void) {
 	char opcao;
 	do {
@@ -27,16 +29,21 @@ void moduloNutricionista(void) {
 }
 
 void cadastrarNutricionista(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaCadastrarNutricionista();
+	Nutricionista *nutri;
+
+	nutri = telaCadastrarNutricionista();
+
+  free(nutri);
 }
 
 
 void pesquisarNutricionista(void) {
+  Nutricionista *nutri;
 	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaPesquisarNutricionista();
+
+	nutri = telaPesquisarNutricionista();
+  
+  free(nutri); 
 }
 
 
@@ -80,15 +87,11 @@ char menuNutricionista(void) {
 	return op;
 }
 
-void telaCadastrarNutricionista(void) {
-	char cpf[12];
-	char nome[51];
-	char email[51];
-	int dia, mes, ano;
-  int dataValida;
-	char celular[12];
+Nutricionista* telaCadastrarNutricionista(void) {
+  Nutricionista *nutri;
+	
 
-    system("clear");
+  system("clear");
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -97,49 +100,54 @@ void telaCadastrarNutricionista(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   getchar();
-  printf("|     CPF (apenas números): ");
-	scanf("%[0-9]", cpf);
-	getchar();
+  nutri = (Nutricionista*) malloc(sizeof(Nutricionista));
+  do {
+	  printf("|           Matrícula (apenas números): ");
+    scanf("%[^\n]", nutri->mtr);
+	  getchar();
+  } while (!validarMatr(nutri->mtr));
 	do {
 	  printf("|     Nome completo: ");
-	  scanf("%[^\n]", nome);
+	  scanf("%[^\n]", nutri->nome);
 	  getchar();
-  } while (!validarNome(nome));
+  } while (!validarNome(nutri->nome));
 	do {
   printf("|     Digite o seu email: ");
-  scanf("%[^\n]", email);
+  scanf("%[^\n]", nutri->email);
   getchar();
-  } while (!validaEmail(email));
+  } while (!validaEmail(nutri->email));
 	printf("Informe sua data de nascimento\n");
-  while (!dataValida) {
+  while (!nutri->dataValida) {
   printf("Dia: ");
-  scanf("%d", &dia);
+  scanf("%d", &nutri->dia);
   printf("Mês: ");
-  scanf("%d", &mes);
+  scanf("%d", &nutri->mes);
   printf("Ano: ");
-  scanf("%d", &ano);
-  dataValida = validadeDataDeNascimento(dia, mes, ano);
-  if (!dataValida) {
-    printf("A data %02d/%02d/%d não é válida\n", dia, mes, ano);
+  scanf("%d", &nutri->ano);
+  getchar();
+  nutri->dataValida = validadeDataDeNascimento(nutri->dia, nutri->mes, nutri->ano);
+  if (!nutri->dataValida) {
+    printf("A data %02d/%02d/%d não é válida\n", nutri->dia, nutri->mes, nutri->ano);
     printf("Tente novamente!!!\n\n");
   }
-  printf("A data de nascimento %02d/%02d/%d é válida\n", dia, mes, ano);
+  printf("A data de nascimento %02d/%02d/%d é válida\n", nutri->dia, nutri->mes, nutri->ano);
 	getchar();
   }
 	printf("|           Celular  (apenas números): ");
-	scanf("%[0-9]", celular);
+	scanf("%[0-9]", nutri->celular);
 	getchar();
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return nutri;
 }
 
-void telaPesquisarNutricionista(void) {
-	char cpf[12];
+Nutricionista* telaPesquisarNutricionista(void) {
+	Nutricionista *nutri;
 
-    system("clear");
+  system("clear");
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -147,14 +155,17 @@ void telaPesquisarNutricionista(void) {
   printf("|     ==============        PESQUISAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     Informe o CPF do Nutricionista (apenas números): ");
-	scanf("%[0-9]", cpf);
+  getchar();
+  nutri = (Nutricionista*) malloc(sizeof(Nutricionista));
+  printf("|     Informe a matrícula do Nutricionista (apenas números): ");
+	scanf("%[0-9]", nutri->mtr);
 	getchar();                                                                        
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return nutri;
 }
 
 void telaAtualizarNutricionista(void) {

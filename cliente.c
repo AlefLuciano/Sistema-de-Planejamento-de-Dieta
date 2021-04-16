@@ -86,8 +86,6 @@ Cliente* telaCadastrarCliente(void) {
 
   Cliente *cli;
 
-  cli = (Cliente*) malloc(sizeof(Cliente));
-
   int alturaValida = 0;
   int pesoValido = 0;
   float imc;
