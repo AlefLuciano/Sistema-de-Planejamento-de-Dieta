@@ -100,12 +100,16 @@ void telaCadastrarNutricionista(void) {
   printf("|     CPF (apenas números): ");
 	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|           Nome completo: ");
-	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome);
-	getchar();
-	printf("|           E-mail: ");
-	scanf("%[a-z@.]", email);
-	getchar();
+	do {
+	  printf("|     Nome completo: ");
+	  scanf("%[^\n]", nome);
+	  getchar();
+  } while (!validarNome(nome));
+	do {
+  printf("|     Digite o seu email: ");
+  scanf("%[^\n]", email);
+  getchar();
+  } while (!validaEmail(email));
 	printf("Informe sua data de nascimento\n");
   while (!dataValida) {
   printf("Dia: ");

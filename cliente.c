@@ -5,17 +5,6 @@
 #include "cliente.h"
 #include "util.h"
 
-typedef struct cliente Cliente;
-
-struct cliente {
-  char matr[12];
-	char nome[51];
-	char email[51];
-	char celular[12];
-  int dia, mes, ano;
-  float peso, altura;
-};
-
 
 // Cliente* cli;
 
@@ -102,7 +91,7 @@ Cliente* telaCadastrarCliente(void) {
   int alturaValida = 0;
   int pesoValido = 0;
   float imc;
-  int dataValida;
+  int dataValida = 0;
 
   system("clear");
   printf("-------------------------------------------------------------------------------\n");
@@ -128,26 +117,27 @@ Cliente* telaCadastrarCliente(void) {
   scanf("%[^\n]", cli->email);
   getchar();
   } while (!validaEmail(cli->email));
-  printf("Email valido ");
+  printf("|     Email valido \n");
   printf("|     Celular  (apenas números): ");
 	scanf("%[0-9]", cli->celular);
   getchar();
   while (!pesoValido) {
     printf("|     Peso(Ex. 60.0): ");
   scanf("%f", &cli->peso);
+  getchar();
   pesoValido = validaPeso(cli->peso);
   if (!pesoValido){
     printf("%.2f não é um peso valido\n",cli->peso);
     printf("Tente novamente!!\n");
   }
   else {
-    printf("Peso valido\n");
-  getchar();
+    printf("|     Peso valido\n");
   }
   }
   while (!alturaValida) {
   printf("|     Altura(Ex. 1.75): ");
   scanf("%f", &cli->altura);
+  getchar();
   alturaValida = validaAltura(cli->altura);
   if (!alturaValida) {
     printf("%.2f não é uma altura valida\n",cli->altura);
@@ -155,7 +145,6 @@ Cliente* telaCadastrarCliente(void) {
   }
   else {
   printf("Altura valida\n");
-  getchar();
   }
   }
   imc = calcularIMC(cli->peso, cli->altura);
@@ -164,19 +153,22 @@ Cliente* telaCadastrarCliente(void) {
   while (!dataValida) {
   printf("Dia: ");
   scanf("%d", &cli->dia);
+  getchar();
   printf("Mês: ");
   scanf("%d", &cli->mes);
+  getchar();
   printf("Ano: ");
   scanf("%d", &cli->ano);
+  getchar();
   dataValida = validadeDataDeNascimento(cli->dia, cli->mes, cli->ano);
   if (!dataValida) {
     printf("A data %02d/%02d/%d não é válida\n", cli->dia, cli->mes, cli->ano);
     printf("Tente novamente!!!\n\n");
   }
   printf("A data de nascimento %02d/%02d/%d é válida\n", cli->dia, cli->mes, cli->ano);
-	getchar();
+	
   }
-
+getchar();
 printf("\n");
 	delay(1);
 return cli;

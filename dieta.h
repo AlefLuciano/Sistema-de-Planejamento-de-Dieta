@@ -8,3 +8,4 @@ void cadastrarDieta(void);
 void pesquisarDieta(void);
 void atualizarDieta(void);
 void excluirDieta(void);
+
