@@ -253,3 +253,4 @@ void gravarCliente(Cliente* cli) {
   fwrite(cli, sizeof(Cliente), 1, fp);
   fclose(fp);
 }
+

@@ -33,6 +33,8 @@ void cadastrarNutricionista(void) {
 
 	nutri = telaCadastrarNutricionista();
 
+  gravarNutricionista(nutri);
+
   free(nutri);
 }
 
@@ -210,3 +212,14 @@ void telaExcluirNutricionista(void) {
 	delay(1);
 }
 
+void gravarNutricionista(Nutricionista* nutri) {
+  FILE* fp;
+  fp = fopen("nutricionista.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  fwrite(nutri, sizeof(Nutricionista), 1, fp);
+  fclose(fp);
+}

@@ -20,3 +20,4 @@ void atualizarNutricionista(void);
 void excluirNutricionista(void);
 Nutricionista* telaCadastrarNutricionista(void);
 Nutricionista* telaPesquisarNutricionista(void);
+void gravarNutricionista (Nutricionista*);
