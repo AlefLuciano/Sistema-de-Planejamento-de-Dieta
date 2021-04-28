@@ -6,8 +6,6 @@
 #include "util.h"
 
 
-// Cliente* cli;
-
 void moduloCliente(void) {
 	char opcao;
 	do {
