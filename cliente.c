@@ -168,7 +168,6 @@ Cliente* telaCadastrarCliente(void) {
   }
   }
   cli->imc = calcularIMC(cli->peso, cli->altura);
-  printf("Seu IMC é %.1f\n", cli->imc);
   printf("Informe sua data de nascimento\n");
   while (!dataValida) {
   printf("Dia: ");
@@ -310,7 +309,8 @@ void exibirCliente(Cliente* cli) {
     // printf("Data de Nascimento: %s/%s/%s\n", cli->dia, cli->mes, cli->ano);
     printf("Celular: %s\n", cli->celular);
     printf("O peso do cliente é: %.2fKg\n", cli->peso);
-    printf("A altura do cliente é: %.2ffKg", cli->altura);
+    printf("A altura do cliente é: %.2fKg\n", cli->altura);
+    printf("o IMC do cliente é %.1f\n", cli->imc);
   }
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();
