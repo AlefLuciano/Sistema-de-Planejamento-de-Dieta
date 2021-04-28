@@ -34,10 +34,18 @@ void cadastrarCliente(void) {
 }
 
 
+
 void pesquisarCliente(void) {
 	Cliente *cli;
+  char* matr;
 
 	cli = telaPesquisarCliente();
+
+  // pesquisa se o cliente estar no arquivo 
+  cli= buscarCliente(matr); 
+
+  // exibe o cliente
+  exibirCliente(cli); 
 
   free(cli);
 }
@@ -252,3 +260,54 @@ void gravarCliente(Cliente* cli) {
   fclose(fp);
 }
 
+
+Cliente* buscarCliente(char* matr) {
+  FILE* fp;
+  Cliente* cli;
+
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  fp = fopen("cliente.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(cli, sizeof(Cliente), 1, fp);
+    if (strcmp(cli->matr, matr) == 0) {
+      fclose(fp);
+      return cli;
+    }
+  }
+  fclose(fp);
+  return NULL;
+}
+
+void exibirCliente(Cliente* cli) {
+  if (cli == NULL) {
+    printf("\n- - - Esse cliente não esta cadastrado - - -\n");
+  } else {
+    printf("\n - - - Cliente Cadastrado - - -\n");
+    printf("Matrícula: %s\n", cli->matr);
+    printf("Nome do cliente: %s\n", cli->nome);
+    printf("Endereço eletrônico: %s\n", cli->email);
+// printf("Data de Nascimento: %s\n", cli->nascimento);
+    printf("Celular: %s\n", cli->celular);
+  }
+}
+
+// void exibirAluno(Aluno* aln) {
+
+//   if (aln == NULL) {
+//     printf("\n= = = Aluno Inexistente = = =\n");
+//   } else {
+//     printf("\n= = = Aluno Cadastrado = = =\n");
+//     printf("Matrícula: %s\n", aln->matr);
+//     printf("Nome do aluno: %s\n", aln->nome);
+//     printf("Endereço eletrônico: %s\n", aln->email);
+//     printf("Data de Nasc: %s\n", aln->nasc);
+//     printf("Celular: %s\n", aln->celular);
+//   }
+//   printf("\n\nTecle ENTER para continuar!\n\n");
+//   getchar();
+// }

@@ -21,3 +21,5 @@ void excluirCliente(void);
 Cliente* telaCadastrarCliente(void);
 Cliente* telaPesquisarCliente(void);
 void gravarCliente (Cliente*);
+Cliente* buscarCliente(char*);
+void exibirCliente(Cliente*);
