@@ -39,7 +39,7 @@ void pesquisarCliente(void) {
 	Cliente *cli;
   char* matr;
 
-	cli = telaPesquisarCliente();
+	matr = telaPesquisarCliente();
 
   // pesquisa se o cliente estar no arquivo 
   cli= buscarCliente(matr); 
@@ -50,6 +50,21 @@ void pesquisarCliente(void) {
   free(cli);
 }
 
+// void pesquisarAluno(void) {
+//   Aluno* aln;
+//   char* matr;
+// 	// função ainda em desenvolvimento
+
+// 	matr = telaPesquisarAluno();
+
+//   // pesquisa o aluno no arquivo
+//   aln = buscarAluno(matr);
+
+//   // exibe o aluno pesquisado
+//   exibirAluno(aln);
+
+//   free(aln); 
+// }
 
 void atualizarCliente(void) {
 	// função ainda em desenvolvimento
@@ -96,7 +111,6 @@ Cliente* telaCadastrarCliente(void) {
 
   int alturaValida = 0;
   int pesoValido = 0;
-  float imc;
   int dataValida = 0;
 
   system("clear");
@@ -153,8 +167,8 @@ Cliente* telaCadastrarCliente(void) {
   printf("Altura valida\n");
   }
   }
-  imc = calcularIMC(cli->peso, cli->altura);
-  printf("Seu IMC é %.1f\n", imc);
+  cli->imc = calcularIMC(cli->peso, cli->altura);
+  printf("Seu IMC é %.1f\n", cli->imc);
   printf("Informe sua data de nascimento\n");
   while (!dataValida) {
   printf("Dia: ");
@@ -182,12 +196,13 @@ return cli;
 
 
 
-Cliente* telaPesquisarCliente(void) {
+char* telaPesquisarCliente(void) {
 	Cliente* cli;
 
   cli = (Cliente*) malloc(sizeof(Cliente));
 
   system("clear");
+  getchar();
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -266,7 +281,7 @@ Cliente* buscarCliente(char* matr) {
   Cliente* cli;
 
   cli = (Cliente*) malloc(sizeof(Cliente));
-  fp = fopen("cliente.dat", "rb");
+  fp = fopen("clientes.dat", "rb");
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Não é possível continuar este programa...\n");
@@ -283,6 +298,7 @@ Cliente* buscarCliente(char* matr) {
   return NULL;
 }
 
+
 void exibirCliente(Cliente* cli) {
   if (cli == NULL) {
     printf("\n- - - Esse cliente não esta cadastrado - - -\n");
@@ -290,24 +306,12 @@ void exibirCliente(Cliente* cli) {
     printf("\n - - - Cliente Cadastrado - - -\n");
     printf("Matrícula: %s\n", cli->matr);
     printf("Nome do cliente: %s\n", cli->nome);
-    printf("Endereço eletrônico: %s\n", cli->email);
-// printf("Data de Nascimento: %s\n", cli->nascimento);
+    printf("Email do cliente: %s\n", cli->email);
+    // printf("Data de Nascimento: %s/%s/%s\n", cli->dia, cli->mes, cli->ano);
     printf("Celular: %s\n", cli->celular);
+    printf("O peso do cliente é: %.2fKg\n", cli->peso);
+    printf("A altura do cliente é: %.2ffKg", cli->altura);
   }
+  printf("\n\nTecle ENTER para continuar!\n\n");
+  getchar();
 }
-
-// void exibirAluno(Aluno* aln) {
-
-//   if (aln == NULL) {
-//     printf("\n= = = Aluno Inexistente = = =\n");
-//   } else {
-//     printf("\n= = = Aluno Cadastrado = = =\n");
-//     printf("Matrícula: %s\n", aln->matr);
-//     printf("Nome do aluno: %s\n", aln->nome);
-//     printf("Endereço eletrônico: %s\n", aln->email);
-//     printf("Data de Nasc: %s\n", aln->nasc);
-//     printf("Celular: %s\n", aln->celular);
-//   }
-//   printf("\n\nTecle ENTER para continuar!\n\n");
-//   getchar();
-// }

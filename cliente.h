@@ -6,7 +6,7 @@ struct cliente {
 	char email[51];
 	char celular[12];
   int dia, mes, ano;
-  float peso, altura;
+  float peso, altura, imc;
 };
 
 
@@ -19,7 +19,7 @@ void pesquisarCliente(void);
 void atualizarCliente(void);
 void excluirCliente(void);
 Cliente* telaCadastrarCliente(void);
-Cliente* telaPesquisarCliente(void);
+char* telaPesquisarCliente(void);
 void gravarCliente (Cliente*);
 Cliente* buscarCliente(char*);
 void exibirCliente(Cliente*);
