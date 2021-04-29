@@ -48,6 +48,7 @@ void pesquisarCliente(void) {
   exibirCliente(cli); 
 
   free(cli);
+  free(matr);
 }
 
 
@@ -60,23 +61,33 @@ void atualizarCliente(void) {
 matr =	telaAtualizarCliente();
 //pesquisa o cliente no arquivo 
 cli = buscarCliente(matr);
-
 if(cli == NULL){
-  printf("\n\n- - -Cliente não cadastrado- - -\n\n");
+    printf("\n\n- - -Cliente não cadastrado- - -\n\n");
 } else{
-  cli = telaCadastrarCliente();
-  strcpy(cli->matr, matr); 
-  regravarCliente(cli);
-  free(cli);
-}
-
+    cli = telaCadastrarCliente();
+    strcpy(cli->matr, matr); 
+    regravarCliente(cli);
+    free(cli);
+  }
+free(matr);
 }
 
 
 void excluirCliente(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaExcluirCliente();
+  Cliente* cli;
+  char* matr;
+
+
+  matr = telaExcluirCliente();
+  cli = buscarCliente(matr);
+if(cli == NULL){
+  printf("\n\n- - -Cliente não cadastrado- - -\n\n");
+} else{
+  cli->status = 0;
+  regravarCliente(cli);
+  free(cli);
+  }
+  free(matr);
 }
 
 char menuCliente(void) {
@@ -188,6 +199,7 @@ Cliente* telaCadastrarCliente(void) {
 	
   }
 getchar();
+cli->status = 1;
 printf("\n");
 	delay(1);
 return cli;
@@ -244,10 +256,12 @@ char* telaAtualizarCliente(void) {
   return matr;
 }
 
-void telaExcluirCliente(void) {
-	char matr[12];
+char* telaExcluirCliente(void) {
+	char* matr;
 
-    system("clear");
+  matr = (char*) malloc(12*sizeof(char));
+
+  system("clear");
   printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -263,6 +277,7 @@ void telaExcluirCliente(void) {
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return matr; 
 }
 
 void gravarCliente(Cliente* cli) {
@@ -291,7 +306,7 @@ Cliente* buscarCliente(char* matr) {
   }
   while(!feof(fp)) {
     fread(cli, sizeof(Cliente), 1, fp);
-    if (strcmp(cli->matr, matr) == 0) {
+    if ((strcmp(cli->matr, matr) == 0) && (cli->status == 1)) {
       fclose(fp);
       return cli;
     }
@@ -314,6 +329,7 @@ void exibirCliente(Cliente* cli) {
     printf("O peso do cliente é: %.2fKg\n", cli->peso);
     printf("A altura do cliente é: %.2fKg\n", cli->altura);
     printf("o IMC do cliente é %.1f\n", cli->imc);
+    printf("Status: %d\n", cli->status);
   }
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();
