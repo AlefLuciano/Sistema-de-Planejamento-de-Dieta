@@ -51,21 +51,25 @@ void pesquisarCliente(void) {
 }
 
 
+
 void atualizarCliente(void) {
-  Cliente* cli;
+	Cliente* cli;
   char* matr;
-	// função ainda em desenvolvimento
 
-	matr = telaAtualizarCliente();
+	// exibe a tela apenas para testes
+matr =	telaAtualizarCliente();
+//pesquisa o cliente no arquivo 
+cli = buscarCliente(matr);
 
-  //Pesquisa o cliente no arquivo 
-  cli = buscarCliente(matr);
+if(cli == NULL){
+  printf("\n\n- - -Cliente não cadastrado- - -\n\n");
+} else{
+  cli = telaCadastrarCliente();
+  strcpy(cli->matr, matr); 
+  regravarCliente(cli);
+  free(cli);
+}
 
-  if(cli == NULL) {
-    printf("\n\n- - -Cliente não cadastrado- - -\n\n");
-  } else {
-    regravarCliente(cli, matr);
-  }
 }
 
 
@@ -219,10 +223,9 @@ char* telaPesquisarCliente(void) {
 
 char* telaAtualizarCliente(void) {
 	char* matr;
+  matr = (char*) malloc(12*sizeof(char)); 
 
-  matr = (char*) malloc(12*sizeof(char));
-
-  system("clear");
+    system("clear");
   printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -316,7 +319,25 @@ void exibirCliente(Cliente* cli) {
   getchar();
 }
 
-void regravarCliente(CLiente* cli, char* matr) {
+void regravarCliente(Cliente* cli){
+FILE* fp;
+Cliente* cliLido;
 
+cliLido = (Cliente*) malloc(sizeof(Cliente));
+fp = fopen("clientes.dat", "r+b");
+if(fp == NULL) {
+  printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+  printf("Não é possível continuar este programa...\n");
+  exit(1);
 }
-
+while (!feof(fp)) {
+  fread(cliLido, sizeof(Cliente), 1, fp);
+  if (strcmp(cliLido->matr, cli->matr) == 0) {
+    fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+    fwrite(cli, sizeof(Cliente), 1, fp);
+    break;
+  }
+}
+fclose(fp);
+free(cliLido);
+}

@@ -24,4 +24,4 @@ char* telaAtualizarCliente(void);
 void gravarCliente (Cliente*);
 Cliente* buscarCliente(char*);
 void exibirCliente(Cliente*);
-void regravarCliente(Cliente*, char*);
+void regravarCliente(Cliente*);
