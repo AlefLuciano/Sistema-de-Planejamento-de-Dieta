@@ -12,7 +12,7 @@ struct cliente {
 
 void moduloCliente(void);
 char menuCliente(void);
-void telaAtualizarCliente(void);
+
 void telaExcluirCliente(void);
 void cadastrarCliente(void);
 void pesquisarCliente(void);
@@ -20,6 +20,8 @@ void atualizarCliente(void);
 void excluirCliente(void);
 Cliente* telaCadastrarCliente(void);
 char* telaPesquisarCliente(void);
+char* telaAtualizarCliente(void);
 void gravarCliente (Cliente*);
 Cliente* buscarCliente(char*);
 void exibirCliente(Cliente*);
+void regravarCliente(Cliente*, char*);

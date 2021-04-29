@@ -50,26 +50,22 @@ void pesquisarCliente(void) {
   free(cli);
 }
 
-// void pesquisarAluno(void) {
-//   Aluno* aln;
-//   char* matr;
-// 	// função ainda em desenvolvimento
-
-// 	matr = telaPesquisarAluno();
-
-//   // pesquisa o aluno no arquivo
-//   aln = buscarAluno(matr);
-
-//   // exibe o aluno pesquisado
-//   exibirAluno(aln);
-
-//   free(aln); 
-// }
 
 void atualizarCliente(void) {
+  Cliente* cli;
+  char* matr;
 	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaAtualizarCliente();
+
+	matr = telaAtualizarCliente();
+
+  //Pesquisa o cliente no arquivo 
+  cli = buscarCliente(matr);
+
+  if(cli == NULL) {
+    printf("\n\n- - -Cliente não cadastrado- - -\n\n");
+  } else {
+    regravarCliente(cli, matr);
+  }
 }
 
 
@@ -220,10 +216,13 @@ char* telaPesquisarCliente(void) {
   return cli;
 }
 
-void telaAtualizarCliente(void) {
-	char matr[12];
 
-    system("clear");
+char* telaAtualizarCliente(void) {
+	char* matr;
+
+  matr = (char*) malloc(12*sizeof(char));
+
+  system("clear");
   printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -239,6 +238,7 @@ void telaAtualizarCliente(void) {
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return matr;
 }
 
 void telaExcluirCliente(void) {
@@ -315,3 +315,8 @@ void exibirCliente(Cliente* cli) {
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();
 }
+
+void regravarCliente(CLiente* cli, char* matr) {
+
+}
+
