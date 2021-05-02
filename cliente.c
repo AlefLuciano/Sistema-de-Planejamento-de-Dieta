@@ -59,13 +59,13 @@ void atualizarCliente(void) {
 
 	// exibe a tela apenas para testes
 matr =	telaAtualizarCliente();
+cli = (Cliente*) malloc (sizeof(Cliente));
 //pesquisa o cliente no arquivo 
 cli = buscarCliente(matr);
 if(cli == NULL){
     printf("\n\n- - -Cliente não cadastrado- - -\n\n");
 } else{
-    cli = telaCadastrarCliente();
-    strcpy(cli->matr, matr); 
+  cli->status = 0;
     regravarCliente(cli);
     free(cli);
   }
@@ -77,9 +77,10 @@ void excluirCliente(void) {
   Cliente* cli;
   char* matr;
 
-
   matr = telaExcluirCliente();
+  cli = (Cliente*) malloc(sizeof(Cliente));
   cli = buscarCliente(matr);
+
 if(cli == NULL){
   printf("\n\n- - -Cliente não cadastrado- - -\n\n");
 } else{
@@ -104,12 +105,13 @@ char menuCliente(void) {
   printf("|                                                                           |\n");
   printf("|      1. Cadastrar novo cliente                                            |\n");
   printf("|      2. Pesquisar um cliente                                              |\n");
-  printf("|      3. Altualizar os dados de um cliente                                 |\n");
+  printf("|      3. Atualizar os dados de um cliente                                 |\n");
   printf("|      4. Excluir um cliente                                                |\n");
   printf("|      0. Voltar ao menu anterior                                           |\n");
   printf("|                                                                           |\n");
   printf("|      Escolha uma opção:                                                   |\n");
   scanf("%c", &op);
+  getchar();
   printf("-----------------------------------------------------------------------------\n");
   printf("\n");
   delay(1);
@@ -208,9 +210,10 @@ return cli;
 
 
 char* telaPesquisarCliente(void) {
-	Cliente* cli;
 
-  cli = (Cliente*) malloc(sizeof(Cliente));
+	char* matr;
+
+  matr = (char*) malloc(12*sizeof(char));
 
   system("clear");
   getchar();
@@ -222,14 +225,14 @@ char* telaPesquisarCliente(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
 	printf("|      Informe a matrícula do cliente (apenas números): ");
-	scanf("%[0-9]",cli->matr);
+	scanf("%[0-9]",matr);
 	getchar();
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
-  return cli;
+  return matr;
 }
 
 
@@ -336,24 +339,32 @@ void exibirCliente(Cliente* cli) {
 }
 
 void regravarCliente(Cliente* cli){
+int achou;
 FILE* fp;
 Cliente* cliLido;
 
 cliLido = (Cliente*) malloc(sizeof(Cliente));
 fp = fopen("clientes.dat", "r+b");
+
+
 if(fp == NULL) {
   printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
   printf("Não é possível continuar este programa...\n");
   exit(1);
 }
+
 while (!feof(fp)) {
-  fread(cliLido, sizeof(Cliente), 1, fp);
+  (fread(cliLido, sizeof(Cliente), 1, fp) && !achou);
   if (strcmp(cliLido->matr, cli->matr) == 0) {
     fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
     fwrite(cli, sizeof(Cliente), 1, fp);
     break;
   }
 }
+
 fclose(fp);
 free(cliLido);
 }
+
+
+
