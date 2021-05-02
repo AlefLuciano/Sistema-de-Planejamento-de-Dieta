@@ -39,27 +39,54 @@ void cadastrarNutricionista(void) {
 }
 
 
+
 void pesquisarNutricionista(void) {
   Nutricionista *nutri;
+  char* matr;
 	// função ainda em desenvolvimento
 
-	nutri = telaPesquisarNutricionista();
+	matr = telaPesquisarNutricionista();
   
-  free(nutri); 
-}
+  nutri = buscarNutricionista(matr);
 
+  exibirNutricionista(nutri);
+  free(nutri); 
+  free(matr);
+}
 
 void atualizarNutricionista(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaAtualizarNutricionista();
+  Nutricionista* nutri;
+  char* matr;
+
+	matr = telaAtualizarNutricionista();
+  nutri = buscarNutricionista(matr);
+  if(nutri == NULL){
+    printf("\n\n- - -Nutricionista não cadastrado- - -\n\n");
+  } else {
+    nutri = telaCadastrarNutricionista();
+    strcpy (nutri-> matr, matr);
+    regravarNutricionista(nutri);
+    free(nutri);
+  }
+  free(matr);
 }
 
-
 void excluirNutricionista(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaExcluirNutricionista();
+  Nutricionista* nutri;
+  char* matr;
+
+	matr = telaExcluirNutricionista();
+  nutri = (Nutricionista*) malloc(sizeof(Nutricionista));
+  nutri = buscarNutricionista(matr);
+
+  if(nutri == NULL){
+    printf("\n\n- - -Nutricionista não cadastrado- - -\n\n");
+  } else {
+    nutri->status = 0;
+    regravarNutricionista(nutri);
+    free(nutri);
+  }
+  free(matr);
 }
 
 char menuNutricionista(void) {
@@ -105,9 +132,9 @@ Nutricionista* telaCadastrarNutricionista(void) {
   nutri = (Nutricionista*) malloc(sizeof(Nutricionista));
   do {
 	  printf("|           Matrícula (apenas números): ");
-    scanf("%[^\n]", nutri->mtr);
+    scanf("%[^\n]", nutri->matr);
 	  getchar();
-  } while (!validarMatr(nutri->mtr));
+  } while (!validarMatr(nutri->matr));
 	do {
 	  printf("|     Nome completo: ");
 	  scanf("%[^\n]", nutri->nome);
@@ -138,6 +165,7 @@ Nutricionista* telaCadastrarNutricionista(void) {
 	printf("|           Celular  (apenas números): ");
 	scanf("%[0-9]", nutri->celular);
 	getchar();
+  nutri->status = 1;
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
@@ -146,8 +174,11 @@ Nutricionista* telaCadastrarNutricionista(void) {
   return nutri;
 }
 
-Nutricionista* telaPesquisarNutricionista(void) {
-	Nutricionista *nutri;
+
+char* telaPesquisarNutricionista(void) {
+	char* matr;
+
+  matr = (char*) malloc(12*sizeof(char));
 
   system("clear");
 	printf("\n");
@@ -158,22 +189,23 @@ Nutricionista* telaPesquisarNutricionista(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   getchar();
-  nutri = (Nutricionista*) malloc(sizeof(Nutricionista));
   printf("|     Informe a matrícula do Nutricionista (apenas números): ");
-	scanf("%[0-9]", nutri->mtr);
+	scanf("%[0-9]", matr);
 	getchar();                                                                        
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
-  return nutri;
+  return matr;
 }
 
-void telaAtualizarNutricionista(void) {
-	char cpf[12];
 
-    system("clear");
+char* telaAtualizarNutricionista(void) {
+	char* matr;
+  matr = (char*) malloc(12*sizeof(char));
+
+  system("clear");
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -181,20 +213,22 @@ void telaAtualizarNutricionista(void) {
   printf("|     ==============        ATUALIZAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     Informe o CPF do Nutricionista (apenas números): ");
-	scanf("%[0-9]", cpf);
+  printf("|     Informe a matricula do Nutricionista (apenas números): ");
+	scanf("%[0-9]", matr);
 	getchar();                                                                        
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return matr;
 }
 
-void telaExcluirNutricionista(void) {
-	char cpf[12];
+char* telaExcluirNutricionista(void) {
+	char* matr;
+  matr = (char*) malloc(12*sizeof(char));
 
-    system("clear");
+  system("clear");
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -202,14 +236,15 @@ void telaExcluirNutricionista(void) {
   printf("|     ==============         EXCLUIR NUTRICIONISTA         ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     Informe o CPF do nutricionista (apenas números): ");
-	scanf("%[0-9]", cpf);
+  printf("|     Informe a matricula do nutricionista (apenas números): ");
+	scanf("%[0-9]", matr);
 	getchar();                                                                        
   printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return matr;
 }
 
 void gravarNutricionista(Nutricionista* nutri) {
@@ -222,4 +257,68 @@ void gravarNutricionista(Nutricionista* nutri) {
   }
   fwrite(nutri, sizeof(Nutricionista), 1, fp);
   fclose(fp);
+}
+
+Nutricionista* buscarNutricionista(char* matr) {
+  FILE* fp;
+  Nutricionista* nutri;
+
+  nutri = (Nutricionista*) malloc(sizeof(Nutricionista));
+  fp = fopen("nutricionista.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(nutri, sizeof(Nutricionista), 1, fp);
+    if ((strcmp(nutri->matr, matr) == 0) && (nutri->status == 1)) {
+      fclose(fp);
+      return nutri;
+    }
+  }
+  fclose(fp);
+  return NULL;
+}
+
+void exibirNutricionista(Nutricionista* nutri) {
+  if (nutri == NULL) {
+    printf("\n- - - Esse nutricionista não esta cadastrado - - -\n");
+  } else {
+    printf("\n- - - Nutricionista Cadastrado- - -\n");
+    printf("Matricula: %s", nutri->matr);
+    printf("Nome do nutricionista: %s\n", nutri->nome);
+    printf("Email do nutricionista: %s\n", nutri->email);
+    printf("Celular: %s\n", nutri->celular);
+  }
+  printf("\n\nTecle ENTER para continuar!\n\n");
+  getchar();
+}
+
+void regravarNutricionista(Nutricionista* nutri){
+int achou;
+FILE* fp;
+Nutricionista* nutriLido;
+
+nutriLido = (Nutricionista*) malloc(sizeof(Nutricionista));
+fp = fopen("nutricionista.dat", "r+b");
+
+
+if(fp == NULL) {
+  printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+  printf("Não é possível continuar este programa...\n");
+  exit(1);
+}
+
+while (!feof(fp)) {
+  (fread(nutriLido, sizeof(Nutricionista), 1, fp) && !achou);
+  if (strcmp(nutriLido->matr, nutri->matr) == 0) {
+    fseek(fp, -1*sizeof(Nutricionista), SEEK_CUR);
+    fwrite(nutri, sizeof(Nutricionista), 1, fp);
+    break;
+  }
+}
+
+fclose(fp);
+free(nutriLido);
 }

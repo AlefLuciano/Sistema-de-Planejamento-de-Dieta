@@ -59,13 +59,13 @@ void atualizarCliente(void) {
 
 	// exibe a tela apenas para testes
 matr =	telaAtualizarCliente();
-cli = (Cliente*) malloc (sizeof(Cliente));
 //pesquisa o cliente no arquivo 
 cli = buscarCliente(matr);
 if(cli == NULL){
     printf("\n\n- - -Cliente não cadastrado- - -\n\n");
 } else{
-  cli->status = 0;
+    cli = telaCadastrarCliente();
+    strcpy (cli-> matr, matr);
     regravarCliente(cli);
     free(cli);
   }
@@ -200,7 +200,6 @@ Cliente* telaCadastrarCliente(void) {
   printf("A data de nascimento %02d/%02d/%d é válida\n", cli->dia, cli->mes, cli->ano);
 	
   }
-getchar();
 cli->status = 1;
 printf("\n");
 	delay(1);
@@ -240,7 +239,7 @@ char* telaAtualizarCliente(void) {
 	char* matr;
   matr = (char*) malloc(12*sizeof(char)); 
 
-    system("clear");
+  system("clear");
   printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -365,6 +364,4 @@ while (!feof(fp)) {
 fclose(fp);
 free(cliLido);
 }
-
-
 
