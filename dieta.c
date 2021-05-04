@@ -284,6 +284,12 @@ void exibirDieta(Dieta* diet) {
     printf("\n- - - Esse dieta não esta cadastrado - - -\n");
   } else {
     printf("\n - - - Dieta Cadastrado - - -\n");
+    printf("Café da manhã: %s\n", diet->cafeDaManha);
+    printf("lanche da manhã: %s\n",diet->lanche1);
+    printf("almoço: %s\n", diet->almoco);
+    printf("Lanche da tarde: %s\n", diet->lanche2);
+    printf("Jantar: %s\n", diet->jantar);
+    printf("Ceia: %s\n", diet->ceia);
   }
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();
