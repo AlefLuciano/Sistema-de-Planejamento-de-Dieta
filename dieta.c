@@ -57,16 +57,40 @@ void pesquisarDieta(void) {
 
 
 void atualizarDieta(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaAtualizarDieta();
+	Dieta* diet;
+  char* codDieta;
+
+codDieta =	telaAtualizarDieta();
+//pesquisa o dieta no arquivo 
+diet = buscarDieta(codDieta);
+if(diet == NULL){
+    printf("\n\n- - -Dieta não cadastrado- - -\n\n");
+} else{
+    diet = telaCadastrarDieta();
+    strcpy (diet-> codDieta, codDieta);
+    regravarDieta(diet);
+    free(diet);
+  }
+free(codDieta);
 }
 
 
 void excluirDieta(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaExcluirDieta();
+	Dieta* diet;
+  char* codDieta;
+
+  codDieta = telaExcluirDieta();
+  diet = (Dieta*) malloc(sizeof(Dieta));
+  diet = buscarDieta(codDieta);
+
+if(diet == NULL){
+  printf("\n\n- - -Dieta não cadastrado- - -\n\n");
+} else{
+  diet->status = 0;
+  regravarDieta(diet);
+  free(diet);
+  }
+  free(codDieta);
 }
 
 
@@ -122,7 +146,7 @@ Dieta* telaCadastrarDieta(void) {
 	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", diet->objetivo);
 	getchar();
   printf("|     Escreva o cafe da manhã da dieta: ");
-	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", diet->cafeDaManhã );
+	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", diet->cafeDaManha );
   getchar();
   printf("|     Escreva o lanche da manhã da dieta: ");
 	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 ]", diet->lanche1 );
@@ -148,7 +172,7 @@ Dieta* telaCadastrarDieta(void) {
   return diet;
 }
 
-char* telaPesquisarCliente(void) {
+char* telaPesquisarDieta(void) {
 
 	char* codDieta;
 
@@ -173,8 +197,9 @@ char* telaPesquisarCliente(void) {
   return codDieta;
 }
 
-void telaAtualizarDieta(void) {
-	char codDieta[4];
+char* telaAtualizarDieta(void) {
+	char* codDieta;
+  codDieta = (char*) malloc(4*sizeof(char));
 
   system("clear");
 	printf("\n");
@@ -192,11 +217,13 @@ void telaAtualizarDieta(void) {
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return codDieta;
 }
 
 
-void telaExcluirDieta(void) {
-	char codDieta[4];
+char* telaExcluirDieta(void) {
+	char* codDieta;
+  codDieta = (char*) malloc(4*sizeof(char));
 
   system("clear");
 	printf("\n");
@@ -214,6 +241,7 @@ void telaExcluirDieta(void) {
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return codDieta;
 }
 
 void gravarDieta(Dieta* diet) {
@@ -251,20 +279,11 @@ Dieta* buscarDieta(char* codDieta) {
 }
 
 
-void exibirDieta(Dieta* cli) {
-  if (cli == NULL) {
+void exibirDieta(Dieta* diet) {
+  if (diet == NULL) {
     printf("\n- - - Esse dieta não esta cadastrado - - -\n");
   } else {
-    // printf("\n - - - Dieta Cadastrado - - -\n");
-    // printf("Matrícula: %s\n", cli->matr);
-    // printf("Nome do Dieta: %s\n", cli->nome);
-    // printf("Email do Dieta: %s\n", cli->email);
-    // // printf("Data de Nascimento: %s/%s/%s\n", cli->dia, cli->mes, cli->ano);
-    // printf("Celular: %s\n", cli->celular);
-    // printf("O peso do Dieta é: %.2fKg\n", cli->peso);
-    // printf("A altura do cliente é: %.2fKg\n", cli->altura);
-    // printf("o IMC do cliente é %.1f\n", cli->imc);
-    // printf("Status: %d\n", cli->status);
+    printf("\n - - - Dieta Cadastrado - - -\n");
   }
   printf("\n\nTecle ENTER para continuar!\n\n");
   getchar();

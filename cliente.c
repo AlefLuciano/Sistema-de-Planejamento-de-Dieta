@@ -72,7 +72,6 @@ if(cli == NULL){
 free(matr);
 }
 
-
 void excluirCliente(void) {
   Cliente* cli;
   char* matr;
