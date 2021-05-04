@@ -20,9 +20,12 @@ void atualizarDieta(void);
 void excluirDieta(void);
 
 Dieta* telaCadastrarDieta(void);
-void telaPesquisarDieta(void);
-void telaAtualizarDieta(void);
-void telaExcluirDieta(void);
+char* telaPesquisarDieta(void);
+char* telaAtualizarDieta(void);
+char* telaExcluirDieta(void);
 
 void gravarDieta(Dieta*);
+Dieta* buscarDieta(char*);
+void exibirDieta(Dieta*);
+void regravarDieta(Dieta*);
 

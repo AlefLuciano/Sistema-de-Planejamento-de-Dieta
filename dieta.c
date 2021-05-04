@@ -39,9 +39,20 @@ void cadastrarDieta(void) {
 }
 
 void pesquisarDieta(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaPesquisarDieta();
+  Dieta *diet;
+  char* codDieta;
+
+	// codDieta = telaPesquisarDieta();
+  codDieta = telaPesquisarDieta();
+
+  // pesquisa se o dieta estar no arquivo 
+  diet= buscarDieta(codDieta);
+
+  // exibe o Dieta
+  exibirDieta(diet); 
+
+  free(diet);
+  free(codDieta);
 }
 
 
@@ -137,8 +148,11 @@ Dieta* telaCadastrarDieta(void) {
   return diet;
 }
 
-void telaPesquisarDieta(void) {
-  char focoDaDieta[20];
+char* telaPesquisarCliente(void) {
+
+	char* codDieta;
+
+  codDieta = (char*) malloc(4*sizeof(char));
 
   system("clear");
 	printf("\n");
@@ -149,13 +163,14 @@ void telaPesquisarDieta(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   printf("|     Escreva o codigo da dieta: ");
-	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", focoDaDieta);
+	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", codDieta);
 	getchar();
-printf("|                                                                             |\n");
+  printf("|                                                                             |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
 	delay(1);
+  return codDieta;
 }
 
 void telaAtualizarDieta(void) {
@@ -211,4 +226,77 @@ void gravarDieta(Dieta* diet) {
   }
   fwrite(diet, sizeof(Dieta), 1, fp);
   fclose(fp);
+}
+
+Dieta* buscarDieta(char* codDieta) {
+  FILE* fp;
+  Dieta* diet;
+
+  diet = (Dieta*) malloc(sizeof(Dieta));
+  fp = fopen("dietas.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(diet, sizeof(Dieta), 1, fp);
+    if ((strcmp(diet->codDieta, codDieta) == 0) && (diet->status == 1)) {
+      fclose(fp);
+      return diet;
+    }
+  }
+  fclose(fp);
+  return NULL;
+}
+
+
+void exibirDieta(Dieta* cli) {
+  if (cli == NULL) {
+    printf("\n- - - Esse dieta não esta cadastrado - - -\n");
+  } else {
+    // printf("\n - - - Dieta Cadastrado - - -\n");
+    // printf("Matrícula: %s\n", cli->matr);
+    // printf("Nome do Dieta: %s\n", cli->nome);
+    // printf("Email do Dieta: %s\n", cli->email);
+    // // printf("Data de Nascimento: %s/%s/%s\n", cli->dia, cli->mes, cli->ano);
+    // printf("Celular: %s\n", cli->celular);
+    // printf("O peso do Dieta é: %.2fKg\n", cli->peso);
+    // printf("A altura do cliente é: %.2fKg\n", cli->altura);
+    // printf("o IMC do cliente é %.1f\n", cli->imc);
+    // printf("Status: %d\n", cli->status);
+  }
+  printf("\n\nTecle ENTER para continuar!\n\n");
+  getchar();
+}
+
+
+void regravarDieta(Dieta* diet){
+int achou;
+FILE* fp;
+Dieta* dietLido;
+
+dietLido = (Dieta*) malloc(sizeof(Dieta));
+fp = fopen("dietas.dat", "r+b");
+
+
+if(fp == NULL) {
+  printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+  printf("Não é possível continuar este programa...\n");
+  exit(1);
+}
+
+while (!feof(fp)) {
+    
+    break;
+  (fread(dietLido, sizeof(Dieta), 1, fp) && !achou);
+  if (strcmp(dietLido->codDieta, diet->codDieta) == 0) {
+    fseek(fp, -1*sizeof(Dieta), SEEK_CUR);
+    fwrite(diet, sizeof(Dieta), 1, fp);
+    break;
+  }
+}
+
+fclose(fp);
+free(dietLido);
 }
