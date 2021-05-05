@@ -56,7 +56,7 @@ char menuRelatorio(void) {
 char* telaDietasPorObjetivo(void) {
 	char* objetivo;
 
-  objetivo = (char*) malloc(2*sizeof(char));
+  objetivo = (char*) malloc(13*sizeof(char));
 
   system("clear");
   printf("\n");
@@ -66,11 +66,8 @@ char* telaDietasPorObjetivo(void) {
   printf("|     ==============          DIETAS POR OBJETIVO          ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     Objetivo da dieta\n");
-  printf("|     1-Perder peso\n");
-  printf("|     2-Ganhar peso\n");
-  printf("|     Escolha o objetivo da dieta");
-	scanf("%[1-2]", objetivo);
+  printf("|     informe o objetivo da dieta (perder peso/ganhar peso):");
+	scanf("%[a-záéíóúâêôçàãõ  ]", objetivo);
 	getchar(); 
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
@@ -90,9 +87,9 @@ void relataDietaPorObjetivo(char* objetivo) {
   printf("|     ==============    OBJETIVO: %-12s          ==============     |\n",objetivo);
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     ==============================================     |\n");
-  printf("|     ||  Cod Dieta  ||     Objetivo da Dieta     ||     \n");
-  printf("|     ==============================================     |\n");
+  printf("|     =========================================     |\n");
+  printf("|     ||  Cod Dieta  ||Objetivo da Dieta     ||     \n");
+  printf("|     =========================================     |\n");
   listaDietasPorObjetivo(objetivo);
 
 
@@ -109,12 +106,12 @@ void listaDietasPorObjetivo(char* objetivo) {
     fp = fopen("dietas.dat", "rb");
     while (fread(diet, sizeof(Dieta), 1, fp)) {
       if (strcmp(diet->objetivo, objetivo) == 0) {
-        printf("||  %-3s  ||     %s     ||\n", diet->codDieta, diet->objetivo);
+        printf("     ||  %-3s  || %s          ||\n", diet->codDieta, diet->objetivo);
       }
+    
+    }
     printf("\n\nTecle ENTER para continuar!\n\n");
     getchar();
-    }
-
     fclose(fp);
     free(diet);
 }
