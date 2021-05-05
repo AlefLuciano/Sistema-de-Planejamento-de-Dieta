@@ -40,11 +40,12 @@ void telaSobre(void) {
   printf("|                                                                             |\n");
   printf("|  Programa utilizado para a disciplina DCT1106 - Programação, consite em     |\n");
   printf("|  em um projeto que propõe um sistema capaz de auxiliar o(a) nutricionista   |\n");
-  printf("|  na sugestão de cardápios, alternando os tipos de alimentos a serem         |\n");
-  printf("|  consumidos, de forma que os cardápios da dieta não se tornem repetitivos   |\n");
+  printf("|  e o cliente na sugestão de cardápior para uma dieta saudavel               |\n");
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
+  printf("\n\nTecle ENTER para continuar!\n\n");
+  getchar();
 }
 
 void delay(int segundos) {
@@ -61,6 +62,7 @@ void delay(int segundos) {
 
 int main(void) {
 	char opcao;
+  telaSobre();
 	do {
 		opcao = menuPrincipal();
 		switch(opcao) {

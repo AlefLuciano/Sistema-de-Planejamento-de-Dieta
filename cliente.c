@@ -135,7 +135,7 @@ Cliente* telaCadastrarCliente(void) {
   getchar();
   cli = (Cliente*) malloc(sizeof(Cliente));
   do {
-	    printf("|           Matrícula (apenas números): ");
+	    printf("|           Matrícula (apenas 6 digitos): ");
       scanf("%[^\n]", cli->matr);
 	    getchar();
     } while (!validarMatr(cli->matr));
@@ -211,7 +211,7 @@ char* telaPesquisarCliente(void) {
 
 	char* matr;
 
-  matr = (char*) malloc(12*sizeof(char));
+  matr = (char*) malloc(7*sizeof(char));
 
   system("clear");
   getchar();
@@ -222,7 +222,7 @@ char* telaPesquisarCliente(void) {
   printf("|     ==============           PESQUISAR CLIENTE           ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-	printf("|      Informe a matrícula do cliente (apenas números): ");
+	printf("|      Informe a matrícula do cliente (apenas 6 digitos): ");
 	scanf("%[0-9]",matr);
 	getchar();
   printf("|                                                                             |\n");
@@ -236,7 +236,7 @@ char* telaPesquisarCliente(void) {
 
 char* telaAtualizarCliente(void) {
 	char* matr;
-  matr = (char*) malloc(12*sizeof(char)); 
+  matr = (char*) malloc(7*sizeof(char)); 
 
   system("clear");
   printf("\n");
@@ -246,7 +246,7 @@ char* telaAtualizarCliente(void) {
   printf("|     ==============           ATUALIZAR CLIENTE           ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-	printf("|      Informe a matrícula do cliente (apenas números): ");
+	printf("|      Informe a matrícula do cliente (apenas 6 digitos): ");
 	scanf("%[0-9]", matr);
 	getchar();
   printf("|                                                                             |\n");
@@ -260,7 +260,7 @@ char* telaAtualizarCliente(void) {
 char* telaExcluirCliente(void) {
 	char* matr;
 
-  matr = (char*) malloc(12*sizeof(char));
+  matr = (char*) malloc(7*sizeof(char));
 
   system("clear");
   printf("\n");
@@ -270,7 +270,7 @@ char* telaExcluirCliente(void) {
   printf("|     ==============            EXCLUIR CLIENTE            ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-	printf("|      Informe a matrícula do cliente (apenas números): ");
+	printf("|      Informe a matrícula do cliente (apenas 6 digitos): ");
 	scanf("%[0-9]", matr);
 	getchar();
   printf("|                                                                             |\n");
@@ -327,9 +327,9 @@ void exibirCliente(Cliente* cli) {
     printf("Email do cliente: %s\n", cli->email);
     // printf("Data de Nascimento: %s/%s/%s\n", cli->dia, cli->mes, cli->ano);
     printf("Celular: %s\n", cli->celular);
-    printf("O peso do cliente é: %.2fKg\n", cli->peso);
-    printf("A altura do cliente é: %.2fKg\n", cli->altura);
-    printf("o IMC do cliente é %.1f\n", cli->imc);
+    // printf("O peso do cliente é: %.2fKg\n", cli->peso);
+    // printf("A altura do cliente é: %.2fKg\n", cli->altura);
+    // printf("o IMC do cliente é %.1f\n", cli->imc);
     printf("Status: %d\n", cli->status);
   }
   printf("\n\nTecle ENTER para continuar!\n\n");

@@ -127,7 +127,7 @@ int ehLetra(char c) {
 int validarMatr(char* matr) {
   int tam;
   tam = strlen(matr);
-  if (tam < 10 || tam > 11) {
+  if (tam < 5 || tam > 6) {
     return 0;
   }
   for (int i = 0; i < tam; i++) {
