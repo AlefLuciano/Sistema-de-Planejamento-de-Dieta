@@ -125,7 +125,6 @@ char menuDieta(void) {
 
 }
 
-// Dieta* telaCadastrarDieta(void)
 
 Dieta* telaCadastrarDieta(void) {
   Dieta * diet;
@@ -136,14 +135,17 @@ Dieta* telaCadastrarDieta(void) {
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
-  printf("|     ==============            CADASTRAR DIETA           ==============     |\n");
+  printf("|     ==============            CADASTRAR DIETA            ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   printf("|     Escreva um codigo para a dieta: ");
 	scanf("%[0-9]", diet->codDieta);
 	getchar();
-  printf("|     Escreva o objetivo da dieta(EX: perder peso: ");
-	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", diet->objetivo);
+  printf("|     Objetivo da dieta\n");
+  printf("|     1-Perder peso\n");
+  printf("|     2-Ganhar peso\n\n");
+  printf("|     Escolha o objetivo da dieta: ");
+	scanf("%[1-2]", diet->objetivo);
 	getchar();
   printf("|     Escreva o cafe da manhã da dieta: ");
 	scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9]", diet->cafeDaManha );

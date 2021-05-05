@@ -4,6 +4,7 @@
 #include <time.h>
 #include "relatorio.h"
 #include "util.h"
+#include "dieta.h"
 
 
 ///// MENU RELATORIO //////
@@ -13,17 +14,21 @@ void moduloRelatorio(void) {
 	do {
 		  opcao = menuRelatorio();
 		  switch(opcao) {
-			  case '1': 	verEvolucao();
+			  case '1': 	verDietasPorObjetivo();
           
 						break;
       }
     } while (opcao != '0');
 }
 
-void verEvolucao(void) {
-	// função ainda em desenvolvimento
-	// exibe a tela apenas para testes
-	telaVerEvolucao();
+
+
+void verDietasPorObjetivo(void) {
+  char* objetivo; 
+
+  objetivo = telaDietasPorObjetivo();
+	relataDietaPorObjetivo(objetivo);
+  free(objetivo);
 }
 
 char menuRelatorio(void) {
@@ -37,7 +42,7 @@ char menuRelatorio(void) {
   printf("|     ==============            MÓDULO RELATORIO           ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     1. Ver evolução do cliente                                              |\n");
+  printf("|     1. Listar dietas por objetivo                                           |\n");
   printf("|                                                                             |\n");
   printf("|      Escolha uma opção:                                                     |\n");
   scanf("%c", &op);
@@ -48,33 +53,72 @@ char menuRelatorio(void) {
 	return op;
 }
 
-void telaVerEvolucao (void) {
-float menorPeso;
-char matr[12];
-float vetPeso[] = {88.0, 82.5, 79.5, 81.8}; 
+char* telaDietasPorObjetivo(void) {
+	char* objetivo;
+
+  objetivo = (char*) malloc(2*sizeof(char));
+
+  system("clear");
+  printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
   printf("|     ===================================================================     |\n");
-  printf("|     ==============       SISTEMA DE PLANO DE DIETA       ==============     |\n");
-  printf("|     ==============             VER EVOLUÇÃO              ==============     |\n");
+  printf("|     ==============          DIETAS POR OBJETIVO          ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     Matrícula (apenas números): ");
-  scanf("%[0-9]", matr);
-  getchar();
-  menorPeso = melhorPeso(vetPeso);
-  printf("|      O seu menor peso foi %.2fKg\n", menorPeso);
-  printf("Tecle ENTER para continuar!\n");
-  getchar();
+  printf("|     Objetivo da dieta\n");
+  printf("|     1-Perder peso\n");
+  printf("|     2-Ganhar peso\n");
+  printf("|     Escolha o objetivo da dieta");
+	scanf("%[1-2]", objetivo);
+	getchar(); 
+  printf("|                                                                             |\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("\n");
+  delay(1);
+  return objetivo;
 }
 
 
-float melhorPeso(float* vetPeso) {
-float menorPeso = 200 ;
-for (int i = 0; i < 4; i++) {
-  if (vetPeso[i] < menorPeso) {
-    menorPeso = vetPeso[i];
-  }
+
+void relataDietaPorObjetivo(char* objetivo) {
+  system("clear");
+  printf("\n");
+  printf("-------------------------------------------------------------------------------\n");
+  printf("|                                                                             |\n");
+  printf("|     ===================================================================     |\n");
+  printf("|     ==============    OBJETIVO: %-12s          ==============     |\n",objetivo);
+  printf("|     ===================================================================     |\n");
+  printf("|                                                                             |\n");
+  printf("|     ==============================================     |\n");
+  printf("|     ||  Cod Dieta  ||     Objetivo da Dieta     ||     \n");
+  printf("|     ==============================================     |\n");
+  listaDietasPorObjetivo(objetivo);
+
+
 }
-return menorPeso;
+
+
+
+
+void listaDietasPorObjetivo(char* objetivo) {
+    FILE* fp;
+    Dieta* diet;
+
+    diet = (Dieta*) malloc(sizeof(Dieta));
+    fp = fopen("dietas.dat", "rb");
+    while (fread(diet, sizeof(Dieta), 1, fp)) {
+      if (strcmp(diet->objetivo, objetivo) == 0) {
+        printf("||  %-3s  ||     %s     ||\n", diet->codDieta, diet->objetivo);
+      }
+    printf("\n\nTecle ENTER para continuar!\n\n");
+    getchar();
+    }
+
+    fclose(fp);
+    free(diet);
 }
+
+
+
+
