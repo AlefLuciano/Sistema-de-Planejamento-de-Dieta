@@ -43,6 +43,7 @@ char menuRelatorio(void) {
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
   printf("|     1. Listar dietas por objetivo                                           |\n");
+  printf("|     0. voltar ao menu anterior                                              |\n");
   printf("|                                                                             |\n");
   printf("|      Escolha uma opção:                                                     |\n");
   scanf("%c", &op);
