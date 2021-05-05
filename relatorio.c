@@ -66,7 +66,7 @@ char* telaDietasPorObjetivo(void) {
   printf("|     ==============          DIETAS POR OBJETIVO          ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     informe o objetivo da dieta (perder peso/ganhar peso):");
+  printf("|     informe o objetivo da dieta (perder peso/ganhar peso): ");
 	scanf("%[a-záéíóúâêôçàãõ  ]", objetivo);
 	getchar(); 
   printf("|                                                                             |\n");
@@ -87,9 +87,9 @@ void relataDietaPorObjetivo(char* objetivo) {
   printf("|     ==============    OBJETIVO: %-12s          ==============     |\n",objetivo);
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     =========================================     |\n");
-  printf("|     ||  Cod Dieta  ||Objetivo da Dieta     ||     \n");
-  printf("|     =========================================     |\n");
+  printf("|      =====================================     |\n");
+  printf("|      ||  Cod Dieta  ||Objetivo da Dieta ||     \n");
+  printf("|      =====================================     |\n");
   listaDietasPorObjetivo(objetivo);
 
 
@@ -106,7 +106,7 @@ void listaDietasPorObjetivo(char* objetivo) {
     fp = fopen("dietas.dat", "rb");
     while (fread(diet, sizeof(Dieta), 1, fp)) {
       if (strcmp(diet->objetivo, objetivo) == 0) {
-        printf("     ||  %-3s  || %s          ||\n", diet->codDieta, diet->objetivo);
+        printf("       ||      %s    ||   %s    ||\n", diet->codDieta, diet->objetivo);
       }
     
     }
