@@ -132,7 +132,6 @@ Cliente* telaCadastrarCliente(void) {
   printf("|     ==============           CADASTRAR CLIENTE           ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  getchar();
   cli = (Cliente*) malloc(sizeof(Cliente));
   do {
 	    printf("|           Matrícula (apenas 6 digitos): ");
@@ -140,7 +139,7 @@ Cliente* telaCadastrarCliente(void) {
 	    getchar();
     } while (!validarMatr(cli->matr));
   do {
-	  printf("|     Nome completo: ");
+	  printf("|     Nome: ");
 	  scanf("%[^\n]", cli->nome);
 	getchar();
   } while (!validarNome(cli->nome));
@@ -150,9 +149,11 @@ Cliente* telaCadastrarCliente(void) {
   getchar();
   } while (!validaEmail(cli->email));
   printf("|     Email valido \n");
-  printf("|     Celular  (apenas números): ");
-	scanf("%[0-9]", cli->celular);
+  do {
+  printf("|     Celular  (apenas números com DDD): ");
+	scanf("%[^\n]", cli->celular);
   getchar();
+  } while (!validarCelular(cli->celular));
   while (!pesoValido) {
     printf("|     Peso(Ex. 60.0): ");
   scanf("%f", &cli->peso);
@@ -161,9 +162,6 @@ Cliente* telaCadastrarCliente(void) {
   if (!pesoValido){
     printf("%.2f não é um peso valido\n",cli->peso);
     printf("Tente novamente!!\n");
-  }
-  else {
-    printf("|     Peso valido\n");
   }
   }
   while (!alturaValida) {
@@ -174,9 +172,6 @@ Cliente* telaCadastrarCliente(void) {
   if (!alturaValida) {
     printf("%.2f não é uma altura valida\n",cli->altura);
     printf("Tente de novo!!\n");
-  }
-  else {
-  printf("Altura valida\n");
   }
   }
   cli->imc = calcularIMC(cli->peso, cli->altura);
@@ -196,8 +191,6 @@ Cliente* telaCadastrarCliente(void) {
     printf("A data %02d/%02d/%d não é válida\n", cli->dia, cli->mes, cli->ano);
     printf("Tente novamente!!!\n\n");
   }
-  printf("A data de nascimento %02d/%02d/%d é válida\n", cli->dia, cli->mes, cli->ano);
-	
   }
 cli->status = 1;
 printf("\n");
@@ -214,7 +207,6 @@ char* telaPesquisarCliente(void) {
   matr = (char*) malloc(7*sizeof(char));
 
   system("clear");
-  getchar();
 	printf("\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("|                                                                             |\n");
@@ -325,11 +317,8 @@ void exibirCliente(Cliente* cli) {
     printf("Matrícula: %s\n", cli->matr);
     printf("Nome do cliente: %s\n", cli->nome);
     printf("Email do cliente: %s\n", cli->email);
-    // printf("Data de Nascimento: %s/%s/%s\n", cli->dia, cli->mes, cli->ano);
+    printf("Data de Nascimento: %d/%d/%d\n", cli->dia, cli->mes, cli->ano);
     printf("Celular: %s\n", cli->celular);
-    // printf("O peso do cliente é: %.2fKg\n", cli->peso);
-    // printf("A altura do cliente é: %.2fKg\n", cli->altura);
-    // printf("o IMC do cliente é %.1f\n", cli->imc);
     printf("Status: %d\n", cli->status);
   }
   printf("\n\nTecle ENTER para continuar!\n\n");

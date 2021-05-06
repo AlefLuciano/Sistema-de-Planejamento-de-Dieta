@@ -90,7 +90,7 @@ char menuPrincipal(void) {
   printf("|     ==============             MENU PRINCIPAL            ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|      1. Módulo cliente/paciente                                             |\n");
+  printf("|      1. Módulo cliente                                                      |\n");
   printf("|      2. Módulo nutricionista                                                |\n");
   printf("|      3. Módulo de dietas                                                    |\n");
   printf("|      4. Módulo relatorio                                                    |\n");

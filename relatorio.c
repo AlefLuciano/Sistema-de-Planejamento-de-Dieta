@@ -177,8 +177,8 @@ void avaliacaoDoCliente(char* matr) {
     printf("Matrícula: %s\n", cli->matr);
     printf("Nome do cliente: %s\n", cli->nome);
     printf("O peso do cliente é: %.2fKg\n", cli->peso);
-    printf("A altura do cliente é: %.2fm\n", cli->altura);
-    printf("o IMC do cliente é %.1f\n", cli->imc);
+    printf("A altura do cliente é: %.2fm\n\n", cli->altura);
+    printf("o IMC do cliente é %.1f", cli->imc);
     if (cli->imc < 18.5){
     printf("\nO IMC esta 'abaixo do normal'\n");
   } else if ((cli->imc >= 18.5) && (cli->imc <= 24.9)) {

@@ -1,10 +1,10 @@
 typedef struct dieta Dieta;
 struct dieta {
-  char codDieta[4];
+  char codDieta[7];
   char objetivo[13];
   char cafeDaManha[30];
-  char lanche1[20];
-  char almoco[20];
+  char lanche1[30];
+  char almoco[30];
   char lanche2[30];
   char jantar[30];
   char ceia[30];

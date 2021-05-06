@@ -108,7 +108,8 @@ char menuNutricionista(void) {
   printf("|      0. Voltar ao menu anterior                                             |\n");
   printf("|                                                                             |\n");
   printf("|      Escolha a opção desejada: ");
-	scanf("%c", &op);                                                                          
+	scanf("%c", &op);
+  getchar();                                                                          
   printf("|                                                                             |\n");
   printf("-------------------------------------------------------------------------------\n");
   printf("\n");
@@ -128,15 +129,14 @@ Nutricionista* telaCadastrarNutricionista(void) {
   printf("|     ==============        CADASTRAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  getchar();
   nutri = (Nutricionista*) malloc(sizeof(Nutricionista));
   do {
-	  printf("|           Matrícula (apenas números): ");
+	  printf("|           Matrícula ((apenas 6 digitos)): ");
     scanf("%[^\n]", nutri->matr);
 	  getchar();
   } while (!validarMatr(nutri->matr));
 	do {
-	  printf("|     Nome completo: ");
+	  printf("|     Nome: ");
 	  scanf("%[^\n]", nutri->nome);
 	  getchar();
   } while (!validarNome(nutri->nome));
@@ -160,7 +160,6 @@ Nutricionista* telaCadastrarNutricionista(void) {
     printf("Tente novamente!!!\n\n");
   }
   printf("A data de nascimento %02d/%02d/%d é válida\n", nutri->dia, nutri->mes, nutri->ano);
-	getchar();
   }
 	printf("|           Celular  (apenas números): ");
 	scanf("%[0-9]", nutri->celular);
@@ -188,7 +187,6 @@ char* telaPesquisarNutricionista(void) {
   printf("|     ==============        PESQUISAR NUTRICIONISTA        ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  getchar();
   printf("|     Informe a matrícula do Nutricionista (apenas números): ");
 	scanf("%[0-9]", matr);
 	getchar();                                                                        

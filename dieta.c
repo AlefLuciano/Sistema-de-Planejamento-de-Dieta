@@ -138,9 +138,11 @@ Dieta* telaCadastrarDieta(void) {
   printf("|     ==============            CADASTRAR DIETA            ==============     |\n");
   printf("|     ===================================================================     |\n");
   printf("|                                                                             |\n");
-  printf("|     Escreva um codigo para a dieta: ");
-	scanf("%[0-9]", diet->codDieta);
-	getchar();
+  do {
+	    printf("|           Matrícula (apenas 6 digitos): ");
+      scanf("%[^\n]", diet->codDieta);
+	    getchar();
+    } while (!validarCod(diet->codDieta));
   printf("|     Escolha o objetivo da dieta(perder peso/ganhar peso): ");
 	scanf("%[a-záéíóúâêôçàãõ  ]", diet->objetivo);
 	getchar();
@@ -175,7 +177,7 @@ char* telaPesquisarDieta(void) {
 
 	char* codDieta;
 
-  codDieta = (char*) malloc(4*sizeof(char));
+  codDieta = (char*) malloc(7*sizeof(char));
 
   system("clear");
 	printf("\n");
@@ -198,7 +200,7 @@ char* telaPesquisarDieta(void) {
 
 char* telaAtualizarDieta(void) {
 	char* codDieta;
-  codDieta = (char*) malloc(4*sizeof(char));
+  codDieta = (char*) malloc(7*sizeof(char));
 
   system("clear");
 	printf("\n");
@@ -222,7 +224,7 @@ char* telaAtualizarDieta(void) {
 
 char* telaExcluirDieta(void) {
 	char* codDieta;
-  codDieta = (char*) malloc(4*sizeof(char));
+  codDieta = (char*) malloc(7*sizeof(char));
 
   system("clear");
 	printf("\n");

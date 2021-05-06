@@ -138,6 +138,20 @@ int validarMatr(char* matr) {
   return 1;
 }
 
+int validarCod(char* codDieta) {
+  int tam;
+  tam = strlen(codDieta);
+  if (tam < 5 || tam > 6) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!ehDigito(codDieta[i])) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// Retorna 1 se string recebido for exclusivamente alfabético ou
 /// retorna 0 caso contrário
@@ -150,6 +164,25 @@ int validarNome(char* nome) {
   }
 	return 1;
 }
+
+////////////////////
+///// Retorna 1 se string recebido corresponder a um número de celular válido
+///// (apenas dígitos) ou retorna 0 caso contrário
+///// validação apresentada em aula 
+int validarCelular(char* fone) {
+  int tam;
+  tam = strlen(fone);
+  if (tam != 11) {
+    return 0;
+  }
+  for (int i = 0; i < tam; i++) {
+    if (!ehDigito(fone[i])) {
+        return 0;
+    }
+  }
+  return 1;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Faz uma pausa por n segundos, com n sendo passado como parâmetro
