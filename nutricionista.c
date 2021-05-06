@@ -119,6 +119,7 @@ char menuNutricionista(void) {
 
 Nutricionista* telaCadastrarNutricionista(void) {
   Nutricionista *nutri;
+  int dataValida = 0;
 	
 
   system("clear");
@@ -146,7 +147,7 @@ Nutricionista* telaCadastrarNutricionista(void) {
   getchar();
   } while (!validaEmail(nutri->email));
 	printf("Informe sua data de nascimento\n");
-  while (!nutri->dataValida) {
+  while (!dataValida) {
   printf("Dia: ");
   scanf("%d", &nutri->dia);
   printf("Mês: ");
@@ -154,8 +155,8 @@ Nutricionista* telaCadastrarNutricionista(void) {
   printf("Ano: ");
   scanf("%d", &nutri->ano);
   getchar();
-  nutri->dataValida = validadeDataDeNascimento(nutri->dia, nutri->mes, nutri->ano);
-  if (!nutri->dataValida) {
+  dataValida = validadeDataDeNascimento(nutri->dia, nutri->mes, nutri->ano);
+  if (!dataValida) {
     printf("A data %02d/%02d/%d não é válida\n", nutri->dia, nutri->mes, nutri->ano);
     printf("Tente novamente!!!\n\n");
   }

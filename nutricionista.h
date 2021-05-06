@@ -5,7 +5,6 @@ struct nutricionista {
 	char nome[51];
 	char email[51];
 	int dia, mes, ano;
-  int dataValida;
 	char celular[12];
   int status;
 };
